@@ -155,6 +155,21 @@ void TransactionModel::filtrerTransactions(const QString& type, const QString& d
     dbManager->close();
 }
 
+void TransactionModel::refresh()
+{
+    beginResetModel();
+    readAll();
+    endResetModel();
+
+    // Restore selection if needed
+    if (selectionModel->hasSelection()) {
+        QModelIndex current = selectionModel->currentIndex();
+        if (current.isValid()) {
+            selectionModel->setCurrentIndex(current, QItemSelectionModel::SelectCurrent);
+        }
+    }
+}
+
 void TransactionModel::setHeaderTitle()
 {
     this->setHeaderData(0, Qt::Horizontal, tr("Id Transaction"));

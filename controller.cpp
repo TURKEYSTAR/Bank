@@ -626,31 +626,36 @@ void Controller::onOuvrir_UIListAccount()
         return;
     }
 
-    // Check account status
+    // Get account information
     int selectedLine = index.row();
     QSqlRecord record = accountModel->record(selectedLine);
-    QString statut = record.field(5).value().toString();
 
+    // Check account status
+    QString statut = record.value("statut").toString(); // Using field name instead of index
     if (statut == "GELER") {
         uiClient.warning("Compte gelé",
                          "Ce compte est gelé. Aucune opération n'est autorisée.");
         return;
     }
 
+    // Get the account number (numeroCompteTire)
+    QString accountNumber = record.value("number").toString(); // Adjust field name as needed
+
+    // Get client name
+    QModelIndex userIndex = userModel->getSelectionModel()->currentIndex();
+    QString nomClient = userModel->record(userIndex.row()).value("nom").toString();
+
+    // Configure transaction list
     uiListAccount.hide();
     uiListTransaction.setTableViewModel(transactionModel);
-    uiListTransaction.show();
-    service.listerLesTransactionsDuCompte();
-
-    QModelIndex userIndex = userModel->getSelectionModel()->currentIndex();
-    int selectedUserLine = userIndex.row();
-    QSqlRecord selectedUserRecord = userModel->record(selectedUserLine);
-    QString nomClient = selectedUserRecord.field(1).value().toString();
-
-    QString accountNumber = record.field(2).value().toString();
+    uiListTransaction.setAccountNumber(accountNumber); // Set before loading transactions
     uiListTransaction.updateTitle(nomClient,
                                   "Les transactions effectuées sur le compte : " + accountNumber);
 
+    // Load transactions for this specific account
+    service.listerLesTransactionsDuCompte(); // Assuming you can modify this method
+
+    uiListTransaction.show();
     uiListTransaction.top();
 }
 

@@ -119,6 +119,20 @@
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="pushButtonValider">
+       <property name="text">
+        <string>Valider</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonRejeter">
+       <property name="text">
+        <string>Rejeter</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButtonClose">
        <property name="text">
         <string>Fermer</string>

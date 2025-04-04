@@ -40,6 +40,8 @@ public:
     QWidget *horizontalLayoutWidget_Buttons;
     QHBoxLayout *horizontalLayoutButtons;
     QSpacerItem *horizontalSpacerButtons;
+    QPushButton *pushButtonValider;
+    QPushButton *pushButtonRejeter;
     QPushButton *pushButtonClose;
     QWidget *horizontalLayoutWidget_2;
     QHBoxLayout *horizontalLayout_2;
@@ -102,6 +104,16 @@ public:
 
         horizontalLayoutButtons->addItem(horizontalSpacerButtons);
 
+        pushButtonValider = new QPushButton(horizontalLayoutWidget_Buttons);
+        pushButtonValider->setObjectName("pushButtonValider");
+
+        horizontalLayoutButtons->addWidget(pushButtonValider);
+
+        pushButtonRejeter = new QPushButton(horizontalLayoutWidget_Buttons);
+        pushButtonRejeter->setObjectName("pushButtonRejeter");
+
+        horizontalLayoutButtons->addWidget(pushButtonRejeter);
+
         pushButtonClose = new QPushButton(horizontalLayoutWidget_Buttons);
         pushButtonClose->setObjectName("pushButtonClose");
 
@@ -149,6 +161,8 @@ public:
     {
         UIListTransaction->setWindowTitle(QCoreApplication::translate("UIListTransaction", "Historique des transactions", nullptr));
         labelTitle->setText(QCoreApplication::translate("UIListTransaction", "Les transactions", nullptr));
+        pushButtonValider->setText(QCoreApplication::translate("UIListTransaction", "Valider", nullptr));
+        pushButtonRejeter->setText(QCoreApplication::translate("UIListTransaction", "Rejeter", nullptr));
         pushButtonClose->setText(QCoreApplication::translate("UIListTransaction", "Fermer", nullptr));
         comboBoxType->setItemText(0, QCoreApplication::translate("UIListTransaction", "Tous", nullptr));
         comboBoxType->setItemText(1, QCoreApplication::translate("UIListTransaction", "Type", nullptr));

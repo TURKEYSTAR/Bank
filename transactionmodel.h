@@ -18,12 +18,15 @@ private:
     // Permet d'avoir à tout moment les informations
     // sur l'élélement sélectionné sur la vue.
     QItemSelectionModel* selectionModel;
+    int m_accountId = -1;
 
 public:
     TransactionModel();
     ~TransactionModel() {}
     QItemSelectionModel* getSelectionModel() { return selectionModel; }
     void create(Transaction transaction);
+    void refresh();
+    void setAccountId(int id);
     QList<Transaction> list();
 
     // Rafraîchit la collection et la tableView ...

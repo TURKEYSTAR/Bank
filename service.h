@@ -31,6 +31,7 @@ public:
     void listerLesTransactions(int clientId);
     // -
     void executeTransaction (QMap<QString, QString> input, bool &status, QString &message);
+    bool modifierUneTransaction(const QString& id, const QMap<QString, QVariant>& data);
 
     Service(UserModel* userModel);
     Service(UserModel* userModel, AccountModel* accountModel);

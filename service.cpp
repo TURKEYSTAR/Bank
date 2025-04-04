@@ -3,6 +3,7 @@
 #include "dbmanager.h"
 #include <QtDebug>
 #include <QMessageBox>
+#include <QSqlError>
 
 Service::Service(UserModel* _userModel) :
     userModel(_userModel){}
@@ -306,4 +307,26 @@ void Service::debloquerCompte(int accountId) {
 bool Service::estCompteGelé(int accountId) {
     Account account = accountModel->read(accountId);
     return account.getStatut() == "geler";
+}
+
+bool Service::modifierUneTransaction(const QString& id, const QMap<QString, QVariant>& data)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE t_transactions SET "
+                  "statut = :Statut, "
+                  "date= :Date, "
+                  "type = :Type, "
+                  "montant = :Montant "
+                  "WHERE id = ?");
+
+    query.addBindValue(id);
+    query.bindValue(":Statut", data["statut"]);
+    query.bindValue(":Date", data["date"]);
+    // Bind other values...
+
+    if (!query.exec()) {
+        qDebug() << "Update error:" << query.lastError();
+        return false;
+    }
+    return true;
 }

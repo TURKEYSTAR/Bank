@@ -25,6 +25,7 @@ public:
     bool rechercherUnUser(int id);
     void listerLesUsers();
     void listerLesClients();
+    bool getClientInfo(int clientId, QMap<QString, QString>& clientData);
     void listerLesTransactions();
     void listerLesTransactionsDuCompte();
     void listerLesComptes(int clientId);
@@ -41,6 +42,7 @@ private:
     UserModel* userModel;
     AccountModel* accountModel;
     TransactionModel* transactionModel;
+    DBManager* dbManager;
 
     bool effectuerUnRetrait(int idClient, double montant);
     void effectuerUnVersement(int idClient, double montant);

@@ -79,6 +79,7 @@ private slots:
     void onHistorique_UIClient();
     void onOK_UIClient();
     void onCancel_UIClient();
+    void onProfile_UIClient();
 
     /*
      * Les slots de la fenêtre UIListClient

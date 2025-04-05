@@ -204,6 +204,8 @@ void UIListTransaction::onValiderClicked()
             throw std::runtime_error("Échec de la validation de la transaction");
         }
 
+        this->update();
+
         QMessageBox::information(this, "Succès", "Transaction validée avec succès.");
 
     } catch (const std::exception& e) {
@@ -281,7 +283,7 @@ void UIListTransaction::onRejeterClicked()
         }
 
         // 4. Refresh the view
-        model->refresh();
+        this->update();
 
         QMessageBox::information(this, "Succès", "Transaction rejetée.");
 

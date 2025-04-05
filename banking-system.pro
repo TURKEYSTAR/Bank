@@ -22,6 +22,7 @@ SOURCES += \
     uilistclient.cpp \
     uilistaccount.cpp \
     uiloginin.cpp \
+    uiprofile.cpp \
     uiuser.cpp \
     user.cpp \
     usermodel.cpp \
@@ -42,6 +43,7 @@ HEADERS += \
     uilistclient.h \
     uilistaccount.h \
     uiloginin.h \
+    uiprofile.h \
     uiuser.h \
     user.h \
     usermodel.h \
@@ -55,6 +57,7 @@ FORMS += \
     uilistclient.ui \
     uilistaccount.ui \
     uiloginin.ui \
+    uiprofile.ui \
     uiuser.ui \
     uilisttransaction.ui \
     uiaccount.ui

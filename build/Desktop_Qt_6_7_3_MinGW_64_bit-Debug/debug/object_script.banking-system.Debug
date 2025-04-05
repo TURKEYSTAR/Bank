@@ -11,6 +11,7 @@ debug/uilistuser.o
 debug/uilistclient.o
 debug/uilistaccount.o
 debug/uiloginin.o
+debug/uiprofile.o
 debug/uiuser.o
 debug/user.o
 debug/usermodel.o
@@ -23,6 +24,7 @@ debug/moc_uilistuser.o
 debug/moc_uilistclient.o
 debug/moc_uilistaccount.o
 debug/moc_uiloginin.o
+debug/moc_uiprofile.o
 debug/moc_uiuser.o
 debug/moc_uilisttransaction.o
 debug/moc_uiaccount.o

@@ -33,9 +33,10 @@ public:
     QWidget *centralwidget;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayoutNorth;
-    QSpacerItem *horizontalSpacerLeft;
     QLabel *labelTitle;
     QSpacerItem *horizontalSpacerRight;
+    QPushButton *pushButton_2;
+    QPushButton *pushButtonProfile;
     QWidget *horizontalLayoutWidget_2;
     QHBoxLayout *horizontalLayoutCenter;
     QTableView *tableViewAccounts;
@@ -83,10 +84,6 @@ public:
         horizontalLayoutNorth = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayoutNorth->setObjectName("horizontalLayoutNorth");
         horizontalLayoutNorth->setContentsMargins(0, 0, 0, 0);
-        horizontalSpacerLeft = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
-
-        horizontalLayoutNorth->addItem(horizontalSpacerLeft);
-
         labelTitle = new QLabel(horizontalLayoutWidget);
         labelTitle->setObjectName("labelTitle");
         QFont font;
@@ -99,6 +96,16 @@ public:
 
         horizontalLayoutNorth->addItem(horizontalSpacerRight);
 
+        pushButton_2 = new QPushButton(horizontalLayoutWidget);
+        pushButton_2->setObjectName("pushButton_2");
+
+        horizontalLayoutNorth->addWidget(pushButton_2);
+
+        pushButtonProfile = new QPushButton(horizontalLayoutWidget);
+        pushButtonProfile->setObjectName("pushButtonProfile");
+
+        horizontalLayoutNorth->addWidget(pushButtonProfile);
+
         horizontalLayoutWidget_2 = new QWidget(centralwidget);
         horizontalLayoutWidget_2->setObjectName("horizontalLayoutWidget_2");
         horizontalLayoutWidget_2->setGeometry(QRect(10, 48, 581, 221));
@@ -107,7 +114,7 @@ public:
         horizontalLayoutCenter->setContentsMargins(0, 0, 0, 0);
         tableViewAccounts = new QTableView(horizontalLayoutWidget_2);
         tableViewAccounts->setObjectName("tableViewAccounts");
-        tableViewAccounts->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tableViewAccounts->setSelectionBehavior(QAbstractItemView::SelectionBehavior::SelectRows);
         tableViewAccounts->setSortingEnabled(true);
 
         horizontalLayoutCenter->addWidget(tableViewAccounts);
@@ -192,7 +199,7 @@ public:
         labelCurrentTransaction->setObjectName("labelCurrentTransaction");
         labelCurrentTransaction->setMinimumSize(QSize(250, 0));
         labelCurrentTransaction->setMaximumSize(QSize(250, 20));
-        labelCurrentTransaction->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        labelCurrentTransaction->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter);
 
         verticalLayoutCurrentTransation->addWidget(labelCurrentTransaction);
 
@@ -206,7 +213,7 @@ public:
         labelMontant->setObjectName("labelMontant");
         labelMontant->setMinimumSize(QSize(120, 0));
         labelMontant->setMaximumSize(QSize(120, 20));
-        labelMontant->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        labelMontant->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         formLayout->setWidget(0, QFormLayout::LabelRole, labelMontant);
 
@@ -229,7 +236,7 @@ public:
         UIClient->setCentralWidget(centralwidget);
         menubar = new QMenuBar(UIClient);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 600, 21));
+        menubar->setGeometry(QRect(0, 0, 600, 18));
         UIClient->setMenuBar(menubar);
         statusbar = new QStatusBar(UIClient);
         statusbar->setObjectName("statusbar");
@@ -243,7 +250,9 @@ public:
     void retranslateUi(QMainWindow *UIClient)
     {
         UIClient->setWindowTitle(QCoreApplication::translate("UIClient", "Gestion des comptes bancaires - Client : ", nullptr));
-        labelTitle->setText(QCoreApplication::translate("UIClient", "Vos comptes", nullptr));
+        labelTitle->setText(QCoreApplication::translate("UIClient", " Vos comptes", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("UIClient", "Notifications", nullptr));
+        pushButtonProfile->setText(QCoreApplication::translate("UIClient", "Profile", nullptr));
 #if QT_CONFIG(tooltip)
         pushButtonOuvrir->setToolTip(QCoreApplication::translate("UIClient", "Voir les transactions du compte s\303\251lectionn\303\251 ...", nullptr));
 #endif // QT_CONFIG(tooltip)

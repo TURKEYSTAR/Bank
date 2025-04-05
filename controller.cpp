@@ -511,6 +511,28 @@ void Controller::onCancel_UIClient()
     uiClient.hideTransactionForm();
 }
 
+void Controller::onProfile_UIClient()
+{
+    qDebug() << "Profile button clicked";
+
+    if (!QSqlDatabase::database().isOpen()) {
+        qDebug() << "Database not open!";
+        uiClient.critical("Database Error", "Database connection is not available");
+        return;
+    }
+
+    qDebug() << "Fetching client data for ID:" << connectedUser.getId();
+
+    QMap<QString, QString> clientData;
+    if (service.getClientInfo(connectedUser.getId(), clientData)) {
+        qDebug() << "Client data retrieved:" << clientData;
+        uiClient.showProfileForm(clientData);
+    } else {
+        qDebug() << "Failed to get client info"; // Debug 5
+        uiClient.warning("Profil", "Impossible de charger les informations du client");
+    }
+}
+
 /*
  * Les slots de la fenêtre UIListClient
  */

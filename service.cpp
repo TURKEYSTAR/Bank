@@ -330,3 +330,35 @@ bool Service::modifierUneTransaction(const QString& id, const QMap<QString, QVar
     }
     return true;
 }
+
+bool Service::getClientInfo(int clientId, QMap<QString, QString>& clientData)
+{
+    if (!QSqlDatabase::database().isOpen()) {
+        qDebug() << "Database is not open!";
+        return false;
+    }
+
+    QSqlQuery query;
+    query.prepare("SELECT nom, login, password, country, birthdate, email, role, statut FROM t_users WHERE id = :id");
+    query.bindValue(":id", clientId);
+
+    if (!query.exec()) {
+        qDebug() << "Query error:" << query.lastError().text();
+        return false;
+    }
+
+    if (query.next()) {
+        clientData.insert("nom", query.value(0).toString());
+        clientData.insert("login", query.value(1).toString());
+        clientData.insert("password", query.value(2).toString());
+        clientData.insert("country", query.value(3).toString());
+        clientData.insert("birthdate", query.value(4).toString());
+        clientData.insert("email", query.value(5).toString());
+        clientData.insert("role", query.value(6).toString());  // Fixed index
+        clientData.insert("statut", query.value(7).toString()); // Fixed index
+        return true;
+    }
+
+    qDebug() << "No client found with ID:" << clientId;
+    return false;
+}

@@ -11,6 +11,7 @@
 #include "uilistuser.h"
 #include "uilistclient.h"
 #include "uilistaccount.h"
+#include "ui_uilisttransaction.h"
 #include "uilisttransaction.h"
 #include "uiclient.h"
 #include "uiaccount.h"
@@ -101,6 +102,9 @@ private slots:
      * Les slots de la fenêtre UIListTransaction
      */
     void onClose_UIListTransaction();
+    void onFiltrerClicked();
+    void onValiderClicked();
+    void onRejeterClicked();
 
     /*
      * Les slots de la fenêtre UIAccount

@@ -22,15 +22,26 @@ public:
     void updateTitle(QString suite, QString TransactionTitle);
     void top();
     void setAccountNumber(const QString& accountNumber);
+    void disableActionButtons();
+    void enableActionButtons();
+    QString getUserAccountNumber();
+    QString getSelectedFilter();
+    QString getTransactionType();
+    QString getDateStr();
+    TransactionModel* getTransactionModel() const;
+    bool validateSelectedTransaction();
+    bool rejectSelectedTransaction();
+    QModelIndex getSelectedTransactionIndex() const;
+    Transaction* getSelectedTransaction() const;
     ~UIListTransaction();
-private slots:
-    void onFiltrerClicked();
-    void onValiderClicked();
-    void onRejeterClicked();
+
 private:
     Ui::UIListTransaction *ui;
+    Ui::UIListTransaction *uiListTransactionUi;
     DBManager* dbManager;
+    Transaction userAccountNumber;
     QString currentAccountNumber;
+    QString currentUserRole;
 };
 
 #endif // UILISTTRANSACTION_H

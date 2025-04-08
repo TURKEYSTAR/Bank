@@ -1,5 +1,6 @@
 #include "uilisttransaction.h"
 #include "ui_uilisttransaction.h"
+#include "controller.h"
 #include <QDate>
 #include <QDateEdit>
 #include <QInputDialog>
@@ -20,9 +21,9 @@ UIListTransaction::UIListTransaction(QObject* controller) :
     ui->setupUi(this);
 
     connect(ui->pushButtonClose, SIGNAL(clicked()), controller, SLOT(onClose_UIListTransaction()));
-    connect(ui->pushButtonFiltrer, SIGNAL(clicked()), this, SLOT(onFiltrerClicked()));
-    connect(ui->pushButtonValider, SIGNAL(clicked()), this, SLOT(onValiderClicked()));
-    connect(ui->pushButtonRejeter, SIGNAL(clicked()), this, SLOT(onRejeterClicked()));
+    connect(ui->pushButtonFiltrer, SIGNAL(clicked()), controller , SLOT(onFiltrerClicked()));
+    connect(ui->pushButtonValider, SIGNAL(clicked()), controller, SLOT(onValiderClicked()));
+    connect(ui->pushButtonRejeter, SIGNAL(clicked()), controller, SLOT(onRejeterClicked()));
 }
 
 void UIListTransaction::setTableViewModel(TransactionModel* transactionModel)
@@ -53,114 +54,138 @@ void UIListTransaction::setAccountNumber(const QString& accountNumber) {
     currentAccountNumber = accountNumber;
 }
 
-void UIListTransaction::onFiltrerClicked()
+QString UIListTransaction::getSelectedFilter()
 {
-    QString selectedFilter = ui->comboBoxType->currentText(); // "Type", "Date", or "Balance"
-
-    TransactionModel* model = dynamic_cast<TransactionModel*>(ui->tableViewTransactions->model());
-    if (!model) return;
-
-    if (selectedFilter == "Type") {
-        QString transactionType = QInputDialog::getItem(
-            this,
-            "Filter by Type",
-            "Select transaction type:",
-            QStringList() << "Versement" << "Retrait" << "Virement",
-            0,
-            false
-            );
-        if (!transactionType.isEmpty()) {
-            model->filtrerTransactions(transactionType, "", false);
-        }
-    }
-    else if (selectedFilter == "Date") {
-        // Use QDateEdit or a simple QInputDialog with text validation
-        bool ok;
-        QString dateStr = QInputDialog::getText(
-            this,
-            "Filter by Date",
-            "Enter date (YYYY-MM-DD):",
-            QLineEdit::Normal,
-            QDate::currentDate().toString("yyyy-MM-dd"),
-            &ok
-            );
-
-        if (ok && !dateStr.isEmpty()) {
-            QDate date = QDate::fromString(dateStr, "yyyy-MM-dd");
-            if (date.isValid()) {
-                model->filtrerTransactions("Tous", dateStr, false);
-            } else {
-                QMessageBox::warning(this, "Invalid Date", "Please enter a valid date in YYYY-MM-DD format.");
-            }
-        }
-    }
-    else if (selectedFilter == "Balance") {
-        model->filtrerTransactions("Tous", "", true); // Sort by balance ascending
-    }
+    return ui->comboBoxType->currentText();
 }
 
-void UIListTransaction::onValiderClicked()
+QString UIListTransaction::getTransactionType()
 {
-    // Get selected transaction
+    bool ok;
+    QString type = QInputDialog::getItem(
+        this,
+        "Filtrer par type",
+        "Sélectionnez le type de transaction:",
+        QStringList() << "Versement" << "Retrait" << "Virement",
+        0,
+        false,
+        &ok
+        );
+
+    return ok ? type : QString();
+}
+
+QString UIListTransaction::getDateStr()
+{
+    bool ok;
+    QString date = QInputDialog::getText(
+        this,
+        "Filtrer par date",
+        "Entrez la date (AAAA-MM-JJ):",
+        QLineEdit::Normal,
+        QDate::currentDate().toString("yyyy-MM-dd"),
+        &ok
+        );
+
+    return ok ? date : QString();
+}
+TransactionModel* UIListTransaction::getTransactionModel() const
+{
+    return dynamic_cast<TransactionModel*>(ui->tableViewTransactions->model());
+}
+
+void UIListTransaction::disableActionButtons()
+{
+    ui->pushButtonValider->setEnabled(false);
+    ui->pushButtonRejeter->setEnabled(false);
+}
+
+void UIListTransaction::enableActionButtons()
+{
+    ui->pushButtonValider->setEnabled(true);
+    ui->pushButtonRejeter->setEnabled(true);
+}
+
+QModelIndex UIListTransaction::getSelectedTransactionIndex() const
+{
+    return ui->tableViewTransactions->selectionModel()->currentIndex();
+}
+
+Transaction* UIListTransaction::getSelectedTransaction() const
+{
     QModelIndex index = ui->tableViewTransactions->selectionModel()->currentIndex();
     if (!index.isValid()) {
-        QMessageBox::warning(this, "Sélection requise", "Veuillez sélectionner une transaction");
-        return;
+        return nullptr;
     }
 
-    int selectedRow = index.row();
     TransactionModel* model = dynamic_cast<TransactionModel*>(ui->tableViewTransactions->model());
-    QSqlRecord record = model->record(selectedRow);
-
-    // Get transaction data
-    QString transactionId = record.value("id").toString();
-    QString statut = record.value("statut").toString();
-    QString type = record.value("type").toString();
-    double montant = record.value("montant").toDouble();
-    QString compteTire = record.value("numeroCompteTire").toString();
-    QString compteBeneficiaire = record.value("numeroCompteBeneficiaire").toString();
-
-    // Check status
-    if (statut != "In progress") {
-        QMessageBox::warning(this, "Statut incorrect", "Transaction déjà effectuée");
-        return;
+    if (!model) {
+        return nullptr;
     }
 
-    // Start database operations
+    QSqlRecord record = model->record(index.row());
+
+    return new Transaction(
+        record.value("id").toInt(),
+        record.value("idClient").toInt(),
+        record.value("type").toString(),
+        record.value("idCompteTire").toInt(),
+        record.value("idCompteBeneficiaire").toInt(),
+        record.value("numeroCompteTire").toString(),
+        record.value("numeroCompteBeneficiaire").toString(),
+        record.value("montant").toDouble(),
+        record.value("date").toString(),
+        record.value("statut").toString()
+        );
+}
+
+bool UIListTransaction::validateSelectedTransaction()
+{
+    std::unique_ptr<Transaction> transaction(getSelectedTransaction());
+    if (!transaction) {
+        QMessageBox::warning(this, "Sélection requise", "Veuillez sélectionner une transaction");
+        return false;
+    }
+
+    if (transaction->getStatut() != "In progress") {
+        QMessageBox::warning(this, "Statut incorrect", "Transaction déjà effectuée");
+        return false;
+    }
+
     dbManager = DBManager::getInstance();
     if (!dbManager->open()) {
         QMessageBox::critical(this, "Erreur", "Connexion base de données échouée");
-        return;
+        return false;
     }
 
     QSqlDatabase database = dbManager->database();
     database.transaction();
 
     try {
-        // 1. Process account balances
-        if (type == "Retrait" || type == "Virement") {
+        // Process account balances
+        if (transaction->getType() == "Retrait" || transaction->getType() == "Virement") {
             // Verify account balance
             QSqlQuery checkQuery(database);
             checkQuery.prepare("SELECT balance FROM t_accounts WHERE number = ?");
-            checkQuery.addBindValue(compteTire);
+            checkQuery.addBindValue(transaction->getNumeroCompteTire());
 
             if (!checkQuery.exec() || !checkQuery.next()) {
                 throw std::runtime_error("Impossible de vérifier le solde du compte");
             }
 
             double solde = checkQuery.value(0).toDouble();
-            if (solde < montant) {
+            if (solde < transaction->getMontant()) {
                 throw std::runtime_error(
                     QString("Solde insuffisant (%1 € pour %2 €)")
                         .arg(solde, 0, 'f', 2)
-                        .arg(montant, 0, 'f', 2).toStdString());
+                        .arg(transaction->getMontant(), 0, 'f', 2).toStdString());
             }
 
             // Perform debit
             QSqlQuery debitQuery(database);
             debitQuery.prepare("UPDATE t_accounts SET balance = balance - ? WHERE number = ?");
-            debitQuery.addBindValue(montant);
-            debitQuery.addBindValue(compteTire);
+            debitQuery.addBindValue(transaction->getMontant());
+            debitQuery.addBindValue(transaction->getNumeroCompteTire());
 
             if (!debitQuery.exec() || debitQuery.numRowsAffected() != 1) {
                 throw std::runtime_error("Échec du débit sur le compte");
@@ -168,12 +193,14 @@ void UIListTransaction::onValiderClicked()
         }
 
         // For deposits or transfers, credit the account
-        if (type == "Versement" || type == "Virement") {
-            QString targetAccount = (type == "Versement") ? compteTire : compteBeneficiaire;
+        if (transaction->getType() == "Versement" || transaction->getType() == "Virement") {
+            QString targetAccount = (transaction->getType() == "Versement")
+            ? transaction->getNumeroCompteTire()
+            : transaction->getNumeroCompteBeneficiaire();
 
             QSqlQuery creditQuery(database);
             creditQuery.prepare("UPDATE t_accounts SET balance = balance + ? WHERE number = ?");
-            creditQuery.addBindValue(montant);
+            creditQuery.addBindValue(transaction->getMontant());
             creditQuery.addBindValue(targetAccount);
 
             if (!creditQuery.exec() || creditQuery.numRowsAffected() != 1) {
@@ -181,7 +208,7 @@ void UIListTransaction::onValiderClicked()
             }
         }
 
-        // 2. Update transaction status directly in database
+        // Update transaction status
         QSqlQuery updateTransaction(database);
         updateTransaction.prepare(
             "UPDATE t_transactions SET "
@@ -191,7 +218,7 @@ void UIListTransaction::onValiderClicked()
 
         updateTransaction.bindValue(":statut", "Completed");
         updateTransaction.bindValue(":date", QDateTime::currentDateTime());
-        updateTransaction.bindValue(":id", transactionId);
+        updateTransaction.bindValue(":id", transaction->getId());
 
         if (!updateTransaction.exec()) {
             throw std::runtime_error(
@@ -199,58 +226,45 @@ void UIListTransaction::onValiderClicked()
                     .arg(updateTransaction.lastError().text()).toStdString());
         }
 
-        // 4. Commit transaction
         if (!database.commit()) {
             throw std::runtime_error("Échec de la validation de la transaction");
         }
 
         this->update();
-
-        QMessageBox::information(this, "Succès", "Transaction validée avec succès.");
+        return true;
 
     } catch (const std::exception& e) {
         database.rollback();
         QMessageBox::critical(this, "Erreur", e.what());
         qDebug() << "Error:" << e.what();
+        return false;
     }
 }
 
-void UIListTransaction::onRejeterClicked()
+bool UIListTransaction::rejectSelectedTransaction()
 {
-    // Get database instance
+    std::unique_ptr<Transaction> transaction(getSelectedTransaction());
+    if (!transaction) {
+        QMessageBox::warning(this, "Sélection requise", "Veuillez sélectionner une transaction à rejeter.");
+        return false;
+    }
+
+    if (transaction->getStatut() != "In progress") {
+        QMessageBox::warning(this, "Statut incorrect", "Transaction déjà traitée");
+        return false;
+    }
+
     dbManager = DBManager::getInstance();
     if (!dbManager->open()) {
         QMessageBox::critical(this, "Erreur", "Connexion base de données échouée");
-        return;
+        return false;
     }
 
-    // Get selected transaction
-    QModelIndex index = ui->tableViewTransactions->selectionModel()->currentIndex();
-    if (!index.isValid()) {
-        QMessageBox::warning(this, "Sélection requise", "Veuillez sélectionner une transaction à rejeter.");
-        return;
-    }
-
-    int selectedRow = index.row();
-    TransactionModel* model = dynamic_cast<TransactionModel*>(ui->tableViewTransactions->model());
-    if (!model) return;
-
-    QSqlRecord record = model->record(selectedRow);
-    QString transactionId = record.value("id").toString();
-    QString statut = record.value("statut").toString();
-
-    // Check status
-    if (statut != "In progress") {
-        QMessageBox::warning(this, "Statut incorrect", "Transaction déjà traitée");
-        return;
-    }
-
-    // Start database transaction
     QSqlDatabase database = dbManager->database();
     database.transaction();
 
     try {
-        // 1. Update transaction status in database
+        // Update transaction status
         QSqlQuery updateQuery(database);
         updateQuery.prepare(
             "UPDATE t_transactions SET "
@@ -259,7 +273,7 @@ void UIListTransaction::onRejeterClicked()
             "WHERE id = :id");
 
         updateQuery.bindValue(":date", QDateTime::currentDateTime());
-        updateQuery.bindValue(":id", transactionId);
+        updateQuery.bindValue(":id", transaction->getId());
 
         if (!updateQuery.exec()) {
             throw std::runtime_error(
@@ -267,39 +281,29 @@ void UIListTransaction::onRejeterClicked()
                     .arg(updateQuery.lastError().text()).toStdString());
         }
 
-        // 2. Update the model using the same approach as onValiderClicked
-        // First get the actual model index for the status column (column 6)
-        QModelIndex statusIndex = model->index(selectedRow, 6);
+        // Update the model
+        TransactionModel* model = dynamic_cast<TransactionModel*>(ui->tableViewTransactions->model());
+        QModelIndex statusIndex = model->index(ui->tableViewTransactions->selectionModel()->currentIndex().row(), 6);
+        model->setData(statusIndex, "Rejected");
 
-        // Then update through the model's setData
-        if (!model->setData(statusIndex, "Rejected")) {
-            // If setData fails, try forcing a refresh
-            throw std::runtime_error("La vue sera actualisée");
-        }
-
-        // 3. Commit transaction
         if (!database.commit()) {
             throw std::runtime_error("Échec du commit");
         }
 
-        // 4. Refresh the view
         this->update();
-
-        QMessageBox::information(this, "Succès", "Transaction rejetée.");
+        return true;
 
     } catch (const std::exception& e) {
         database.rollback();
-        // Show success message if it's just a view update issue
         if (QString(e.what()).contains("actualisée")) {
-            QMessageBox::information(this, "Succès",
-                                     "Transaction rejetée (rafraîchissement nécessaire)");
+            QMessageBox::information(this, "Succès", "Transaction rejetée (rafraîchissement nécessaire)");
+            return true;
         } else {
             QMessageBox::critical(this, "Erreur", e.what());
+            return false;
         }
-        qDebug() << "Error:" << e.what();
     }
 }
-
 UIListTransaction::~UIListTransaction()
 {
     delete ui;

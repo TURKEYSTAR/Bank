@@ -139,6 +139,7 @@ void Service::listerLesTransactionsDuCompte()
     transactionModel->readAll(accountId);
 }
 
+
 bool Service::effectuerUnRetrait(int idClient, double montant)
 {
     QModelIndex selectedIndex = accountModel->getSelectionModel()->currentIndex();
@@ -313,22 +314,40 @@ bool Service::modifierUneTransaction(const QString& id, const QMap<QString, QVar
 {
     QSqlQuery query;
     query.prepare("UPDATE t_transactions SET "
-                  "statut = :Statut, "
-                  "date= :Date, "
-                  "type = :Type, "
-                  "montant = :Montant "
-                  "WHERE id = ?");
+                  "statut = :statut, "
+                  "date = :date, "
+                  "type = :type, "
+                  "montant = :montant "
+                  "WHERE id = :id");
 
-    query.addBindValue(id);
-    query.bindValue(":Statut", data["statut"]);
-    query.bindValue(":Date", data["date"]);
-    // Bind other values...
+    query.bindValue(":id", id);
+    query.bindValue(":statut", data["statut"]);
+    query.bindValue(":date", data["date"]);
+    query.bindValue(":type", data["type"]);
+    query.bindValue(":montant", data["montant"]);
 
     if (!query.exec()) {
-        qDebug() << "Update error:" << query.lastError();
+        qDebug() << "Transaction update error:" << query.lastError();
         return false;
     }
+
+    // Optional: Emit signal if using signals/slots for notification
+    // emit dataChanged();
     return true;
+}
+
+void Service::listerLesTransactionsDuCompte(const QString& accountNumber)
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM t_transactions WHERE accountNumber = ? ORDER BY date DESC");
+    query.addBindValue(accountNumber);
+
+    if (!query.exec()) {
+        qDebug() << "Error loading transactions:" << query.lastError();
+        return;
+    }
+
+    transactionModel->setQuery(query);
 }
 
 bool Service::getClientInfo(int clientId, QMap<QString, QString>& clientData)

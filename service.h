@@ -28,6 +28,7 @@ public:
     bool getClientInfo(int clientId, QMap<QString, QString>& clientData);
     void listerLesTransactions();
     void listerLesTransactionsDuCompte();
+    void listerLesTransactionsDuCompte(const QString& accountNumber);
     void listerLesComptes(int clientId);
     void listerLesTransactions(int clientId);
     // -

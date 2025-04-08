@@ -3,6 +3,7 @@
 #include <QDebug>          // For qCritical(), qDebug()
 #include <QSqlError>       // For QSqlError (used by lastError())
 #include <QSqlQuery>
+#include <QMessageBox>
 
 Controller::Controller(QObject* parent) :
     QObject(parent)
@@ -382,18 +383,36 @@ void Controller::onClose_UIClient()
 void Controller::onOuvrir_UIClient()
 {
     QModelIndex index = accountModel->getSelectionModel()->currentIndex();
-    if (index.isValid() == false)
+    if (!index.isValid())
     {
         uiClient.warning("Ouverture de vos comptes",
-                              "Veuillez selectionner un de vos comptes svp ...");
+                         "Veuillez sélectionner un de vos comptes svp...");
+        return;
     }
-    else
-    {
-        uiClient.hide();
-        uiListTransaction.setTableViewModel(transactionModel);
-        uiListTransaction.show();
-        service.listerLesTransactionsDuCompte();
-        uiListTransaction.top();
+
+    // Get account information
+    QSqlRecord record = accountModel->record(index.row());
+
+    // Check if account is frozen (GELER)
+    QString statut = record.value("statut").toString().trimmed().toUpper();
+    if (statut == "GELER") {
+        uiClient.warning("Compte gelé",
+                         "Ce compte est gelé. Aucune opération n'est autorisée.");
+        return;
+    }
+
+    uiClient.hide();
+    uiListTransaction.setTableViewModel(transactionModel);
+    uiListTransaction.show();
+    service.listerLesTransactionsDuCompte();
+    uiListTransaction.top();
+
+    QString role = connectedUser.getRole();
+
+    if (role == "CLIENT" || role == "ADMINISTRATEUR") {
+        uiListTransaction.disableActionButtons();
+    } else if (role == "GESTIONNAIRE"){
+        uiListTransaction.enableActionButtons();
     }
 }
 
@@ -449,6 +468,14 @@ void Controller::onHistorique_UIClient()
     uiListTransaction.show();
     service.listerLesTransactions(connectedUser.getId());
     uiListTransaction.top();
+
+    QString role = connectedUser.getRole();
+
+    if (role == "CLIENT" || role == "ADMINISTRATEUR") {
+        uiListTransaction.disableActionButtons();
+    } else if (role == "GESTIONNAIRE"){
+        uiListTransaction.enableActionButtons();
+    }
 }
 
 void Controller::onOK_UIClient()
@@ -644,7 +671,7 @@ void Controller::onOuvrir_UIListAccount()
     QModelIndex index = accountModel->getSelectionModel()->currentIndex();
     if (!index.isValid()) {
         uiClient.warning("Ouverture de vos comptes",
-                         "Veuillez selectionner un de vos comptes svp ...");
+                         "Veuillez sélectionner un de vos comptes svp...");
         return;
     }
 
@@ -653,29 +680,34 @@ void Controller::onOuvrir_UIListAccount()
     QSqlRecord record = accountModel->record(selectedLine);
 
     // Check account status
-    QString statut = record.value("statut").toString(); // Using field name instead of index
+    QString statut = record.value("statut").toString().trimmed().toUpper();
     if (statut == "GELER") {
         uiClient.warning("Compte gelé",
                          "Ce compte est gelé. Aucune opération n'est autorisée.");
         return;
     }
 
-    // Get the account number (numeroCompteTire)
-    QString accountNumber = record.value("number").toString(); // Adjust field name as needed
+    // Get the account number
+    QString accountNumber = record.value("number").toString();
 
     // Get client name
     QModelIndex userIndex = userModel->getSelectionModel()->currentIndex();
+    if (!userIndex.isValid()) {
+        uiClient.warning("Erreur", "Impossible de récupérer les informations du client.");
+        return;
+    }
+
     QString nomClient = userModel->record(userIndex.row()).value("nom").toString();
 
     // Configure transaction list
     uiListAccount.hide();
     uiListTransaction.setTableViewModel(transactionModel);
-    uiListTransaction.setAccountNumber(accountNumber); // Set before loading transactions
+    uiListTransaction.setAccountNumber(accountNumber);
     uiListTransaction.updateTitle(nomClient,
                                   "Les transactions effectuées sur le compte : " + accountNumber);
 
     // Load transactions for this specific account
-    service.listerLesTransactionsDuCompte(); // Assuming you can modify this method
+    service.listerLesTransactionsDuCompte();
 
     uiListTransaction.show();
     uiListTransaction.top();
@@ -863,6 +895,64 @@ void Controller::onClose_UIAccount()
 {
     uiAccount.hide();
     uiListAccount.show();
+}
+
+void Controller::onFiltrerClicked()
+{
+    QString selectedFilter = uiListTransaction.getSelectedFilter();// "Type", "Date", or "Balance"
+
+    TransactionModel* model = uiListTransaction.getTransactionModel();
+    if (!model) return;
+
+    int currentUserId = connectedUser.getId();
+
+    if (selectedFilter == "Type") {
+        QString transactionType = uiListTransaction.getTransactionType();
+        if (!transactionType.isEmpty()) {
+            model->filtrerTransactions(transactionType, "", false, currentUserId);
+        }
+    }
+    else if (selectedFilter == "Date") {
+        // Use QDateEdit or a simple QInputDialog with text validation
+        bool ok;
+        QString dateStr = uiListTransaction.getDateStr();
+
+        if (ok && !dateStr.isEmpty()) {
+            QDate date = QDate::fromString(dateStr, "yyyy-MM-dd");
+            if (date.isValid()) {
+                model->filtrerTransactions("Tous", dateStr, false, currentUserId);
+            } else {
+                uiListTransaction.warning("Invalid Date", "Please enter a valid date in YYYY-MM-DD format.");
+            }
+        }
+    }
+    else if (selectedFilter == "Balance") {
+        model->filtrerTransactions("Tous", "", true, currentUserId); // Sort by balance ascending
+    }
+}
+
+void Controller::onValiderClicked()
+{
+    if (!uiListTransaction.getSelectedTransactionIndex().isValid()) {
+        QMessageBox::warning(&uiListTransaction, "Sélection requise", "Veuillez sélectionner une transaction");
+        return;
+    }
+
+    if (uiListTransaction.validateSelectedTransaction()) {
+        QMessageBox::information(&uiListTransaction, "Succès", "Transaction validée avec succès.");
+    }
+}
+
+void Controller::onRejeterClicked()
+{
+    if (!uiListTransaction.getSelectedTransactionIndex().isValid()) {
+        QMessageBox::warning(&uiListTransaction, "Sélection requise", "Veuillez sélectionner une transaction à rejeter.");
+        return;
+    }
+
+    if (uiListTransaction.rejectSelectedTransaction()) {
+        QMessageBox::information(&uiListTransaction, "Succès", "Transaction rejetée.");
+    }
 }
 
 Controller::~Controller()

@@ -1,4 +1,6 @@
 #include "transactionmodel.h"
+#include <QStandardItemModel>
+#include <QSortFilterProxyModel>
 
 TransactionModel::TransactionModel()
 {
@@ -88,8 +90,15 @@ void TransactionModel::readAll(int accountId)
     query.bindValue(":accountId", accountId);
     query.exec();
 
+    // Cache the results
+    cachedTransactions.clear();
+    while(query.next()) {
+        cachedTransactions.append(query.record());
+    }
+
     this->setQuery(query);
     setHeaderTitle();
+    currentAccountId = accountId;
 
     dbManager->close();
 }
@@ -110,7 +119,7 @@ void TransactionModel::readBy(int clientId)
     dbManager->close();
 }
 
-void TransactionModel::filtrerTransactions(const QString& type, const QString& dateFilter, bool sortByBalanceAsc)
+void TransactionModel::filtrerTransactions(const QString& type, const QString& dateFilter, bool sortByBalanceAsc, int idClient)
 {
     dbManager->open();
     QSqlQuery query(dbManager->database());
@@ -118,6 +127,11 @@ void TransactionModel::filtrerTransactions(const QString& type, const QString& d
     QString sql = "SELECT id, type, numeroCompteTire, numeroCompteBeneficiaire, montant, date, statut FROM t_transactions";
     QStringList whereClauses;
     QMap<QString, QVariant> bindValues;
+    bindValues[":idClient"] = idClient;
+
+
+    // Toujours filtrer par client
+    whereClauses << "idClient = :idClient";
 
     // Filter by type if not "Tous"
     if (type != "Tous") {
@@ -151,9 +165,15 @@ void TransactionModel::filtrerTransactions(const QString& type, const QString& d
     query.exec();
     this->setQuery(query);
     setHeaderTitle();
-
-    dbManager->close();
+    qDebug("Données recupérées !");
+    if (!query.exec()) {
+        qDebug("Données non recupérées !");
+        dbManager->close();
+        return;
+    }
 }
+
+
 
 void TransactionModel::refresh()
 {

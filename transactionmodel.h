@@ -19,6 +19,8 @@ private:
     // sur l'élélement sélectionné sur la vue.
     QItemSelectionModel* selectionModel;
     int m_accountId = -1;
+    QList<QSqlRecord> cachedTransactions; // Add this line to store transactions
+    int currentAccountId = -1;
 
 public:
     TransactionModel();
@@ -34,7 +36,7 @@ public:
     void readAll(int accountId);
     void setHeaderTitle();
     void readBy(int clientId);
-    void filtrerTransactions(const QString& type, const QString& dateFilter, bool sortByBalanceAsc);
+    void filtrerTransactions(const QString& type, const QString& dateFilter, bool sortByBalanceAsc, int userId);
 
 };
 

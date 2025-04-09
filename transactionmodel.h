@@ -37,6 +37,7 @@ public:
     void setHeaderTitle();
     void readBy(int clientId);
     void filtrerTransactions(const QString& type, const QString& dateFilter, bool sortByBalanceAsc, int userId);
+    void createNotificationForTransaction(Transaction transaction, int transactionId);
 
 };
 

@@ -30,9 +30,9 @@ public:
     QWidget *centralwidget;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayoutNorth;
-    QSpacerItem *horizontalSpacer;
     QLabel *labelTitle;
     QSpacerItem *horizontalSpacerLeft;
+    QPushButton *pushButton;
     QWidget *horizontalLayoutWidget_Tableview;
     QHBoxLayout *horizontalLayoutTableview;
     QTableView *tableViewClients;
@@ -59,10 +59,6 @@ public:
         horizontalLayoutNorth = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayoutNorth->setObjectName("horizontalLayoutNorth");
         horizontalLayoutNorth->setContentsMargins(0, 0, 0, 0);
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
-
-        horizontalLayoutNorth->addItem(horizontalSpacer);
-
         labelTitle = new QLabel(horizontalLayoutWidget);
         labelTitle->setObjectName("labelTitle");
         QFont font;
@@ -75,6 +71,11 @@ public:
 
         horizontalLayoutNorth->addItem(horizontalSpacerLeft);
 
+        pushButton = new QPushButton(horizontalLayoutWidget);
+        pushButton->setObjectName("pushButton");
+
+        horizontalLayoutNorth->addWidget(pushButton);
+
         horizontalLayoutWidget_Tableview = new QWidget(centralwidget);
         horizontalLayoutWidget_Tableview->setObjectName("horizontalLayoutWidget_Tableview");
         horizontalLayoutWidget_Tableview->setGeometry(QRect(10, 55, 581, 351));
@@ -83,7 +84,7 @@ public:
         horizontalLayoutTableview->setContentsMargins(0, 0, 0, 0);
         tableViewClients = new QTableView(horizontalLayoutWidget_Tableview);
         tableViewClients->setObjectName("tableViewClients");
-        tableViewClients->setSelectionBehavior(QAbstractItemView::SelectRows);
+        tableViewClients->setSelectionBehavior(QAbstractItemView::SelectionBehavior::SelectRows);
 
         horizontalLayoutTableview->addWidget(tableViewClients);
 
@@ -110,7 +111,7 @@ public:
         UIListClient->setCentralWidget(centralwidget);
         menubar = new QMenuBar(UIListClient);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 600, 21));
+        menubar->setGeometry(QRect(0, 0, 600, 18));
         UIListClient->setMenuBar(menubar);
         statusbar = new QStatusBar(UIListClient);
         statusbar->setObjectName("statusbar");
@@ -124,7 +125,8 @@ public:
     void retranslateUi(QMainWindow *UIListClient)
     {
         UIListClient->setWindowTitle(QCoreApplication::translate("UIListClient", "Gestion des clients - Gestionnaire : ", nullptr));
-        labelTitle->setText(QCoreApplication::translate("UIListClient", "Les clients", nullptr));
+        labelTitle->setText(QCoreApplication::translate("UIListClient", "    Les clients", nullptr));
+        pushButton->setText(QCoreApplication::translate("UIListClient", "Notifications", nullptr));
         pushButtonOuvrir->setText(QCoreApplication::translate("UIListClient", "Ouvrir", nullptr));
         pushButtonClose->setText(QCoreApplication::translate("UIListClient", "Fermer", nullptr));
     } // retranslateUi

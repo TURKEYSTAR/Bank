@@ -61,6 +61,7 @@ UIClient::UIClient(QObject* controller) :
 
     // Add the new profile button connection
     connect(ui->pushButtonProfile, SIGNAL(clicked()), controller, SLOT(onProfile_UIClient()));
+    connect(ui->pushButtonNotification, SIGNAL(clicked()), controller, SLOT(onNotif_UIClient()));
 
     // Existing OK/Cancel buttons
     connect(ui->pushButtonOK, SIGNAL(clicked()), controller, SLOT(onOK_UIClient()));

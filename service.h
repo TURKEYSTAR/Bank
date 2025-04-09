@@ -5,6 +5,7 @@
 #include "usermodel.h"
 #include "accountmodel.h"
 #include "transactionmodel.h"
+#include "notificationmodel.h"
 
 class Service
 {
@@ -28,12 +29,16 @@ public:
     bool getClientInfo(int clientId, QMap<QString, QString>& clientData);
     void listerLesTransactions();
     void listerLesTransactionsDuCompte();
+    void listerLesTransactions(int clientId);
     void listerLesTransactionsDuCompte(const QString& accountNumber);
     void listerLesComptes(int clientId);
-    void listerLesTransactions(int clientId);
-    // -
+    void listerLesNotifications();
+    void listerLesNotifications(int userId);
+
     void executeTransaction (QMap<QString, QString> input, bool &status, QString &message);
     bool modifierUneTransaction(const QString& id, const QMap<QString, QVariant>& data);
+
+    static void createNotificationForTransaction(Transaction transaction, int transactionId);
 
     Service(UserModel* userModel);
     Service(UserModel* userModel, AccountModel* accountModel);
@@ -43,6 +48,7 @@ private:
     UserModel* userModel;
     AccountModel* accountModel;
     TransactionModel* transactionModel;
+    NotificationModel* notificationModel;
     DBManager* dbManager;
 
     bool effectuerUnRetrait(int idClient, double montant);

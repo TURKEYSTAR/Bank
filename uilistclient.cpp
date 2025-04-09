@@ -16,6 +16,7 @@ UIListClient::UIListClient(QObject* controller) :
 
     connect(ui->pushButtonClose, SIGNAL(clicked()), controller, SLOT(onClose_UIListClient()));
     connect(ui->pushButtonOuvrir, SIGNAL(clicked()), controller, SLOT(onOuvrir_UIListClient()));
+    connect(ui->pushButton, SIGNAL(clicked()), controller, SLOT(onNotif_UIClient()));
 }
 
 void UIListClient::setTableViewModel(UserModel* clientModel)

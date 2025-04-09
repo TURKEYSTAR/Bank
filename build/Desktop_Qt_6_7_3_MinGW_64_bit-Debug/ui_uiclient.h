@@ -35,7 +35,7 @@ public:
     QHBoxLayout *horizontalLayoutNorth;
     QLabel *labelTitle;
     QSpacerItem *horizontalSpacerRight;
-    QPushButton *pushButton_2;
+    QPushButton *pushButtonNotification;
     QPushButton *pushButtonProfile;
     QWidget *horizontalLayoutWidget_2;
     QHBoxLayout *horizontalLayoutCenter;
@@ -96,10 +96,10 @@ public:
 
         horizontalLayoutNorth->addItem(horizontalSpacerRight);
 
-        pushButton_2 = new QPushButton(horizontalLayoutWidget);
-        pushButton_2->setObjectName("pushButton_2");
+        pushButtonNotification = new QPushButton(horizontalLayoutWidget);
+        pushButtonNotification->setObjectName("pushButtonNotification");
 
-        horizontalLayoutNorth->addWidget(pushButton_2);
+        horizontalLayoutNorth->addWidget(pushButtonNotification);
 
         pushButtonProfile = new QPushButton(horizontalLayoutWidget);
         pushButtonProfile->setObjectName("pushButtonProfile");
@@ -251,7 +251,7 @@ public:
     {
         UIClient->setWindowTitle(QCoreApplication::translate("UIClient", "Gestion des comptes bancaires - Client : ", nullptr));
         labelTitle->setText(QCoreApplication::translate("UIClient", " Vos comptes", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("UIClient", "Notifications", nullptr));
+        pushButtonNotification->setText(QCoreApplication::translate("UIClient", "Notifications", nullptr));
         pushButtonProfile->setText(QCoreApplication::translate("UIClient", "Profile", nullptr));
 #if QT_CONFIG(tooltip)
         pushButtonOuvrir->setToolTip(QCoreApplication::translate("UIClient", "Voir les transactions du compte s\303\251lectionn\303\251 ...", nullptr));

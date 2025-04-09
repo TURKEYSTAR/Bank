@@ -12,16 +12,21 @@ SOURCES += \
     account.cpp \
     accountmodel.cpp \
     main.cpp \
+    notification.cpp \
+    notificationmodel.cpp \
+    notificationtype.cpp \
     transaction.cpp \
     uiabstractwindow.cpp \
     controller.cpp \
     dbmanager.cpp \
     service.cpp \
     uiclient.cpp \
+    uilistnotif.cpp \
     uilistuser.cpp \
     uilistclient.cpp \
     uilistaccount.cpp \
     uiloginin.cpp \
+    uimessages.cpp \
     uiprofile.cpp \
     uiuser.cpp \
     user.cpp \
@@ -33,16 +38,21 @@ SOURCES += \
 HEADERS += \
     account.h \
     accountmodel.h \
+    notification.h \
+    notificationmodel.h \
+    notificationtype.h \
     transaction.h \
     uiabstractwindow.h \
     controller.h \
     dbmanager.h \
     service.h \
     uiclient.h \
+    uilistnotif.h \
     uilistuser.h \
     uilistclient.h \
     uilistaccount.h \
     uiloginin.h \
+    uimessages.h \
     uiprofile.h \
     uiuser.h \
     user.h \
@@ -53,10 +63,12 @@ HEADERS += \
 
 FORMS += \
     uiclient.ui \
+    uilistnotif.ui \
     uilistuser.ui \
     uilistclient.ui \
     uilistaccount.ui \
     uiloginin.ui \
+    uimessages.ui \
     uiprofile.ui \
     uiuser.ui \
     uilisttransaction.ui \

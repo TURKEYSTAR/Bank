@@ -381,3 +381,59 @@ bool Service::getClientInfo(int clientId, QMap<QString, QString>& clientData)
     qDebug() << "No client found with ID:" << clientId;
     return false;
 }
+
+void Service::createNotificationForTransaction(Transaction transaction, int transactionId) {
+    NotificationType notifType;
+    QString additionalInfo;
+
+    // Détermine le type de notification et le message
+    if (transaction.getType() == "VERSEMENT") {
+        notifType = (transaction.getStatut() == "COMPLETED")
+        ? NotificationType::VERSEMENT_VALIDE
+        : NotificationType::VIREMENT_REJETE;
+        additionalInfo = QString("Montant: %1 € → Compte: %2")
+                             .arg(transaction.getMontant())
+                             .arg(transaction.getNumeroCompteBeneficiaire());
+    }
+    else  {
+        notifType = (transaction.getStatut() == "COMPLETED")
+        ? NotificationType::VIREMENT_VALIDE
+        : NotificationType::VIREMENT_REJETE;
+        additionalInfo = QString("Montant: %1 € → Compte: %2")
+                             .arg(transaction.getMontant())
+                             .arg(transaction.getNumeroCompteBeneficiaire());
+    }
+
+
+    QString message = NotificationHelper::getMessage(notifType, additionalInfo);
+    QString title = NotificationHelper::getTitle(notifType);
+
+    Notification notification(
+        transaction.getIdClient(),
+        title,                  // Titre généré
+        message,                // Message généré
+        transaction.getDate(),
+        false,                  // isRead
+        notifType
+        // Utilise le message généré
+        );
+
+    notification.setTitle(title);  // Définit le titre
+    notification.setIdTransaction(transactionId);
+
+    NotificationModel notificationModel;
+    notificationModel.create(notification);
+
+}
+
+void Service::listerLesNotifications()
+{
+    notificationModel->getSelectionModel()->reset();
+    notificationModel->readAll();
+}
+
+void Service::listerLesNotifications(int userId)
+{
+    notificationModel->getSelectionModel()->reset();
+    notificationModel->listByUser(userId);
+}

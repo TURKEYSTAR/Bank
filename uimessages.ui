@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Uimessages</class>
+ <widget class="QMainWindow" name="Uimessages">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Messagerie Interne</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="mainLayout">
+
+    <!-- Liste des utilisateurs -->
+    <item>
+     <widget class="QListWidget" name="userList">
+      <property name="minimumWidth">
+       <number>200</number>
+      </property>
+     </widget>
+    </item>
+
+    <!-- Zone de messages -->
+    <item>
+     <widget class="QWidget" name="messageArea">
+      <layout class="QVBoxLayout" name="messageLayout">
+
+       <item>
+        <widget class="QTextEdit" name="messageDisplay">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <layout class="QHBoxLayout" name="inputLayout">
+         <item>
+          <widget class="QLineEdit" name="messageInput"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="sendButton">
+           <property name="text">
+            <string>Envoyer</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+
+      </layout>
+     </widget>
+    </item>
+
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar"/>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

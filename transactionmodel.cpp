@@ -1,4 +1,8 @@
 #include "transactionmodel.h"
+#include "notificationtype.h"
+#include "notification.h"
+#include "service.h"
+#include "notificationmodel.h"
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
 
@@ -28,6 +32,11 @@ void TransactionModel::create(Transaction transaction)
     query.bindValue(":statut", transaction.getStatut());
 
     query.exec();
+
+    int transactionId = query.lastInsertId().toInt();
+
+    Service::createNotificationForTransaction(transaction, transactionId);
+
     dbManager->close();
 
     qDebug("Transaction added successfully !");
@@ -172,8 +181,6 @@ void TransactionModel::filtrerTransactions(const QString& type, const QString& d
         return;
     }
 }
-
-
 
 void TransactionModel::refresh()
 {

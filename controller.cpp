@@ -560,6 +560,15 @@ void Controller::onProfile_UIClient()
     }
 }
 
+void Controller::onNotif_UIClient()
+{
+    uiClient.hide();
+    uiListNotif.setNotificationModel(notificationModel);
+    uiListNotif.refreshNotifications(connectedUser.getId());
+
+    uiListNotif.show();
+}
+
 /*
  * Les slots de la fenêtre UIListClient
  */
@@ -955,6 +964,20 @@ void Controller::onRejeterClicked()
     }
 }
 
+/*
+ * Les slots de la fenêtre UIListNotif
+ */
+void Controller::onClose_UIListNotif()
+{
+    uiListNotif.hide();
+    uiClient.show();
+
+}
+
+void Controller::onOuvrir_UIListNotif()
+{
+    uiListNotif.show();
+}
 Controller::~Controller()
 {
     qDebug("Controller Destroyed...");

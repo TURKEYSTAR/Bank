@@ -8,7 +8,6 @@ UIListNotif::UIListNotif(QWidget *parent) :
     listViewModel(new QStandardItemModel(this))
 {
     ui->setupUi(this);
-    //ui->listViewNotifs->setModel(listViewModel);
 
     setupListView();
     connect(ui->listViewNotifs, &QListView::clicked,

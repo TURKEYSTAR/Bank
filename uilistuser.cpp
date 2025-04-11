@@ -1,5 +1,6 @@
 #include "uilistuser.h"
 #include "ui_uilistuser.h"
+#include "uidashboard.h"
 
 UIListUser::UIListUser(QWidget *parent) :
     QMainWindow(parent),
@@ -18,6 +19,7 @@ UIListUser::UIListUser(QObject* controller) :
     connect(ui->pushButtonDelete, SIGNAL(clicked()), controller, SLOT(onDelete_UIListUser()));
     connect(ui->pushButtonUpdate, SIGNAL(clicked()), controller, SLOT(onUpdate_UIListUser()));
     connect(ui->pushButtonNotification, SIGNAL(clicked()), controller, SLOT(onNotif_UIClient()));
+    connect(ui->pushButtonDashboard, SIGNAL(clicked()), controller, SLOT(onDashboard_UIUser()));
 }
 
 void UIListUser::setTableViewModel(UserModel* userModel)

@@ -85,7 +85,7 @@ public:
         labelId->setObjectName("labelId");
         labelId->setMinimumSize(QSize(60, 20));
         labelId->setMaximumSize(QSize(60, 20));
-        labelId->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        labelId->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         formLayout->setWidget(0, QFormLayout::LabelRole, labelId);
 
@@ -98,7 +98,7 @@ public:
         labelNom->setObjectName("labelNom");
         labelNom->setMinimumSize(QSize(60, 20));
         labelNom->setMaximumSize(QSize(60, 20));
-        labelNom->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        labelNom->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         formLayout->setWidget(1, QFormLayout::LabelRole, labelNom);
 
@@ -111,7 +111,7 @@ public:
         labelBirthdate->setObjectName("labelBirthdate");
         labelBirthdate->setMinimumSize(QSize(60, 20));
         labelBirthdate->setMaximumSize(QSize(60, 20));
-        labelBirthdate->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        labelBirthdate->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         formLayout->setWidget(2, QFormLayout::LabelRole, labelBirthdate);
 
@@ -124,7 +124,7 @@ public:
         labelCountry->setObjectName("labelCountry");
         labelCountry->setMinimumSize(QSize(60, 20));
         labelCountry->setMaximumSize(QSize(60, 20));
-        labelCountry->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        labelCountry->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         formLayout->setWidget(3, QFormLayout::LabelRole, labelCountry);
 
@@ -189,7 +189,7 @@ public:
         labelLogin->setObjectName("labelLogin");
         labelLogin->setMinimumSize(QSize(60, 20));
         labelLogin->setMaximumSize(QSize(60, 20));
-        labelLogin->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        labelLogin->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         formLayout_credentials->setWidget(0, QFormLayout::LabelRole, labelLogin);
 
@@ -202,13 +202,13 @@ public:
         labelPassword->setObjectName("labelPassword");
         labelPassword->setMinimumSize(QSize(60, 20));
         labelPassword->setMaximumSize(QSize(60, 20));
-        labelPassword->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        labelPassword->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         formLayout_credentials->setWidget(1, QFormLayout::LabelRole, labelPassword);
 
         lineEditPassword = new QLineEdit(formLayoutWidget_2);
         lineEditPassword->setObjectName("lineEditPassword");
-        lineEditPassword->setEchoMode(QLineEdit::Password);
+        lineEditPassword->setEchoMode(QLineEdit::EchoMode::Password);
 
         formLayout_credentials->setWidget(1, QFormLayout::FieldRole, lineEditPassword);
 
@@ -222,7 +222,7 @@ public:
         labelRole->setObjectName("labelRole");
         labelRole->setMinimumSize(QSize(60, 20));
         labelRole->setMaximumSize(QSize(60, 20));
-        labelRole->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        labelRole->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         formLayout_2->setWidget(0, QFormLayout::LabelRole, labelRole);
 
@@ -238,7 +238,7 @@ public:
         labelEmail->setObjectName("labelEmail");
         labelEmail->setMinimumSize(QSize(60, 20));
         labelEmail->setMaximumSize(QSize(60, 20));
-        labelEmail->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        labelEmail->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         formLayout_2->setWidget(1, QFormLayout::LabelRole, labelEmail);
 
@@ -246,7 +246,7 @@ public:
         labelSatut->setObjectName("labelSatut");
         labelSatut->setMinimumSize(QSize(60, 20));
         labelSatut->setMaximumSize(QSize(60, 20));
-        labelSatut->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        labelSatut->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         formLayout_2->setWidget(2, QFormLayout::LabelRole, labelSatut);
 
@@ -266,7 +266,7 @@ public:
         UIUser->setCentralWidget(centralwidget);
         menubar = new QMenuBar(UIUser);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 480, 21));
+        menubar->setGeometry(QRect(0, 0, 480, 18));
         UIUser->setMenuBar(menubar);
         statusbar = new QStatusBar(UIUser);
         statusbar->setObjectName("statusbar");
@@ -292,11 +292,11 @@ public:
         comboBoxCountry->setItemText(5, QCoreApplication::translate("UIUser", "Morocco", nullptr));
         comboBoxCountry->setItemText(6, QCoreApplication::translate("UIUser", "Niger", nullptr));
 
-        pushButtonUpdate->setText(QCoreApplication::translate("UIUser", "Update", nullptr));
-        pushButtonClose->setText(QCoreApplication::translate("UIUser", "Close", nullptr));
-        pushButtonFind->setText(QCoreApplication::translate("UIUser", "Find", nullptr));
-        pushButtonList->setText(QCoreApplication::translate("UIUser", "List", nullptr));
-        pushButtonCreate->setText(QCoreApplication::translate("UIUser", "Create", nullptr));
+        pushButtonUpdate->setText(QCoreApplication::translate("UIUser", "Modifier", nullptr));
+        pushButtonClose->setText(QCoreApplication::translate("UIUser", "Fermer", nullptr));
+        pushButtonFind->setText(QCoreApplication::translate("UIUser", "Trouver", nullptr));
+        pushButtonList->setText(QCoreApplication::translate("UIUser", "Lister", nullptr));
+        pushButtonCreate->setText(QCoreApplication::translate("UIUser", "Cr\303\251er", nullptr));
         labelLogin->setText(QCoreApplication::translate("UIUser", "Login :", nullptr));
         labelPassword->setText(QCoreApplication::translate("UIUser", "Password :", nullptr));
         labelRole->setText(QCoreApplication::translate("UIUser", "R\303\264le :", nullptr));

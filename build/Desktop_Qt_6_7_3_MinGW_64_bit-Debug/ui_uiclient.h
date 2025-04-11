@@ -267,7 +267,7 @@ public:
 #endif // QT_CONFIG(tooltip)
         pushButtonHistorique->setText(QCoreApplication::translate("UIClient", "Historique", nullptr));
         pushButtonOK->setText(QCoreApplication::translate("UIClient", "OK", nullptr));
-        pushButtonCancel->setText(QCoreApplication::translate("UIClient", "Cancel", nullptr));
+        pushButtonCancel->setText(QCoreApplication::translate("UIClient", "Annuler", nullptr));
         labelCurrentTransaction->setText(QString());
         labelMontant->setText(QCoreApplication::translate("UIClient", "Montant : ", nullptr));
         labelNumeroBeneficiaire->setText(QCoreApplication::translate("UIClient", "Num\303\251ro du b\303\251n\303\251ficiaire : ", nullptr));

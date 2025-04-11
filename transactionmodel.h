@@ -10,28 +10,28 @@
 #include <QSqlQueryModel>
 #include <QItemSelectionModel>
 #include <QModelIndex>
+#include <QMutex>
 
 class TransactionModel : public QSqlQueryModel
 {
 private:
     DBManager* dbManager;
-    // Permet d'avoir à tout moment les informations
-    // sur l'élélement sélectionné sur la vue.
     QItemSelectionModel* selectionModel;
     int m_accountId = -1;
-    QList<QSqlRecord> cachedTransactions; // Add this line to store transactions
+    QList<QSqlRecord> cachedTransactions;
     int currentAccountId = -1;
+    mutable QMutex dbMutex;
 
 public:
     TransactionModel();
     ~TransactionModel() {}
     QItemSelectionModel* getSelectionModel() { return selectionModel; }
+    bool checkNotificationsEnabled() const;
     void create(Transaction transaction);
     void refresh();
     void setAccountId(int id);
     QList<Transaction> list();
 
-    // Rafraîchit la collection et la tableView ...
     void readAll();
     void readAll(int accountId);
     void setHeaderTitle();

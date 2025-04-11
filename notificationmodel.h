@@ -17,8 +17,6 @@ class NotificationModel : public QSqlQueryModel
 {
 private:
     DBManager* dbManager;
-    // Permet d'avoir à tout moment les informations
-    // sur l'élélement sélectionné sur la vue.
     QItemSelectionModel* selectionModel;
     QSqlQueryModel* sqlModel;
 
@@ -35,7 +33,6 @@ public:
     void readBy(QString notificationType);
 
     void setHeaders();
-
 
     NotificationModel();
 };

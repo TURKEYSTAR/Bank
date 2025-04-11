@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     account.cpp \
     accountmodel.cpp \
+    dashboardmodel.cpp \
     main.cpp \
     notification.cpp \
     notificationmodel.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
     dbmanager.cpp \
     service.cpp \
     uiclient.cpp \
+    uidashboard.cpp \
     uilistnotif.cpp \
     uilistuser.cpp \
     uilistclient.cpp \
@@ -38,6 +40,7 @@ SOURCES += \
 HEADERS += \
     account.h \
     accountmodel.h \
+    dashboardmodel.h \
     notification.h \
     notificationmodel.h \
     notificationtype.h \
@@ -47,6 +50,7 @@ HEADERS += \
     dbmanager.h \
     service.h \
     uiclient.h \
+    uidashboard.h \
     uilistnotif.h \
     uilistuser.h \
     uilistclient.h \
@@ -63,6 +67,7 @@ HEADERS += \
 
 FORMS += \
     uiclient.ui \
+    uidashboard.ui \
     uilistnotif.ui \
     uilistuser.ui \
     uilistclient.ui \

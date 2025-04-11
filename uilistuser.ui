@@ -44,7 +44,7 @@
         </font>
        </property>
        <property name="text">
-        <string>     Les utilisateurs</string>
+        <string>Les utilisateurs</string>
        </property>
       </widget>
      </item>
@@ -65,6 +65,13 @@
       <widget class="QPushButton" name="pushButtonNotification">
        <property name="text">
         <string>Notifications</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonDashboard">
+       <property name="text">
+        <string>Dashboard</string>
        </property>
       </widget>
      </item>

@@ -196,9 +196,9 @@ public:
     {
         UIAccount->setWindowTitle(QCoreApplication::translate("UIAccount", "Client : ", nullptr));
         labelId->setText(QCoreApplication::translate("UIAccount", "Identifiant :", nullptr));
-        labelIdClient->setText(QCoreApplication::translate("UIAccount", "Id client :", nullptr));
+        labelIdClient->setText(QCoreApplication::translate("UIAccount", "Id Client :", nullptr));
         labelAccountNumber->setText(QCoreApplication::translate("UIAccount", "Account number :", nullptr));
-        labelType->setText(QCoreApplication::translate("UIAccount", "Account Type :", nullptr));
+        labelType->setText(QCoreApplication::translate("UIAccount", "Type de compte :", nullptr));
         comboBoxType->setItemText(0, QCoreApplication::translate("UIAccount", "COURANT", nullptr));
         comboBoxType->setItemText(1, QCoreApplication::translate("UIAccount", "EPARGNE", nullptr));
 
@@ -207,9 +207,9 @@ public:
         comboBoxStatut->setItemText(1, QCoreApplication::translate("UIAccount", "GELER", nullptr));
 
         labelStatut->setText(QCoreApplication::translate("UIAccount", "                             Statut :", nullptr));
-        pushButtonCreate->setText(QCoreApplication::translate("UIAccount", "Create", nullptr));
-        pushButtonClose->setText(QCoreApplication::translate("UIAccount", "Close", nullptr));
-        pushButtonUpdate->setText(QCoreApplication::translate("UIAccount", "Update", nullptr));
+        pushButtonCreate->setText(QCoreApplication::translate("UIAccount", "Cr\303\251er", nullptr));
+        pushButtonClose->setText(QCoreApplication::translate("UIAccount", "Fermer", nullptr));
+        pushButtonUpdate->setText(QCoreApplication::translate("UIAccount", "Modifier", nullptr));
     } // retranslateUi
 
 };

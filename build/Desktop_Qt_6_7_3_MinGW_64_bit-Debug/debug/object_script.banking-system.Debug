@@ -1,5 +1,6 @@
 debug/account.o
 debug/accountmodel.o
+debug/dashboardmodel.o
 debug/main.o
 debug/notification.o
 debug/notificationmodel.o
@@ -10,6 +11,7 @@ debug/controller.o
 debug/dbmanager.o
 debug/service.o
 debug/uiclient.o
+debug/uidashboard.o
 debug/uilistnotif.o
 debug/uilistuser.o
 debug/uilistclient.o
@@ -23,8 +25,10 @@ debug/usermodel.o
 debug/transactionmodel.o
 debug/uilisttransaction.o
 debug/uiaccount.o
+debug/moc_dashboardmodel.o
 debug/moc_controller.o
 debug/moc_uiclient.o
+debug/moc_uidashboard.o
 debug/moc_uilistnotif.o
 debug/moc_uilistuser.o
 debug/moc_uilistclient.o

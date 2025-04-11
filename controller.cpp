@@ -174,6 +174,12 @@ void Controller::onClose_UIListUser()
     uiUser.setRoleEditable(true);
 }
 
+void Controller::onDashboard_UIUser()
+{
+    uiDashboard.setModel(dashboardModel);
+    uiDashboard.show();
+}
+
 
 /*...
  * Les slots de la fenêtre UIUser
@@ -971,16 +977,32 @@ void Controller::onClose_UIListNotif()
 {
     uiListNotif.hide();
     uiClient.show();
-
 }
 
 void Controller::onOuvrir_UIListNotif()
 {
     uiListNotif.show();
 }
+
+/*
+ * Les slots de UIDashboard
+ */
+void Controller::onActiverClicked()
+{
+    dashboardModel->enableNotifications();
+    uiDashboard.updateNotificationButtons();
+}
+
+void Controller::onDesactiverClicked()
+{
+    dashboardModel->disableNotifications();
+    uiDashboard.updateNotificationButtons();
+}
+
 Controller::~Controller()
 {
     qDebug("Controller Destroyed...");
 
     delete userModel;
 }
+

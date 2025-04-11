@@ -76,7 +76,7 @@ public:
 
         lineEditPassword = new QLineEdit(formLayoutWidget);
         lineEditPassword->setObjectName("lineEditPassword");
-        lineEditPassword->setEchoMode(QLineEdit::Password);
+        lineEditPassword->setEchoMode(QLineEdit::EchoMode::Password);
 
         formLayout->setWidget(1, QFormLayout::FieldRole, lineEditPassword);
 
@@ -106,12 +106,12 @@ public:
 
         imageLabel = new QLabel(centralwidget);
         imageLabel->setObjectName("imageLabel");
-        imageLabel->setGeometry(QRect(20, 20, 61, 61));
-        imageLabel->setPixmap(QPixmap(QString::fromUtf8("cadenas_1.png")));
+        imageLabel->setGeometry(QRect(10, 10, 81, 91));
+        imageLabel->setPixmap(QPixmap(QString::fromUtf8("images/piggy-bank.png")));
         UILoginIn->setCentralWidget(centralwidget);
         menubar = new QMenuBar(UILoginIn);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 380, 21));
+        menubar->setGeometry(QRect(0, 0, 380, 18));
         UILoginIn->setMenuBar(menubar);
         statusbar = new QStatusBar(UILoginIn);
         statusbar->setObjectName("statusbar");
@@ -125,10 +125,10 @@ public:
     void retranslateUi(QMainWindow *UILoginIn)
     {
         UILoginIn->setWindowTitle(QCoreApplication::translate("UILoginIn", "Sign In", nullptr));
-        labelLogin->setText(QCoreApplication::translate("UILoginIn", "Login :", nullptr));
+        labelLogin->setText(QCoreApplication::translate("UILoginIn", "   Pseudo :", nullptr));
         labelPassword->setText(QCoreApplication::translate("UILoginIn", "Password :", nullptr));
-        pushButtonSubmit->setText(QCoreApplication::translate("UILoginIn", "Submit", nullptr));
-        pushButtonExit->setText(QCoreApplication::translate("UILoginIn", "Exit", nullptr));
+        pushButtonSubmit->setText(QCoreApplication::translate("UILoginIn", "Envoyer", nullptr));
+        pushButtonExit->setText(QCoreApplication::translate("UILoginIn", "Quitter", nullptr));
         imageLabel->setText(QString());
     } // retranslateUi
 

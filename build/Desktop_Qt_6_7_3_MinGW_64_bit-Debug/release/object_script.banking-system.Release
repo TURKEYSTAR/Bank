@@ -1,5 +1,6 @@
 release/account.o
 release/accountmodel.o
+release/dashboardmodel.o
 release/main.o
 release/notification.o
 release/notificationmodel.o
@@ -10,6 +11,7 @@ release/controller.o
 release/dbmanager.o
 release/service.o
 release/uiclient.o
+release/uidashboard.o
 release/uilistnotif.o
 release/uilistuser.o
 release/uilistclient.o
@@ -23,8 +25,10 @@ release/usermodel.o
 release/transactionmodel.o
 release/uilisttransaction.o
 release/uiaccount.o
+release/moc_dashboardmodel.o
 release/moc_controller.o
 release/moc_uiclient.o
+release/moc_uidashboard.o
 release/moc_uilistnotif.o
 release/moc_uilistuser.o
 release/moc_uilistclient.o

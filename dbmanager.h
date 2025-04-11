@@ -3,6 +3,8 @@
 
 #include <QSqlDatabase>
 #include <QtDebug>
+#include <QMutex>
+
 
 class DBManager
 {
@@ -11,6 +13,7 @@ private:
     DBManager();
 
     static DBManager* instance;
+    static QMutex dbMutex;
 
 public:
 
@@ -20,6 +23,7 @@ public:
     static DBManager* getInstance();
     QSqlDatabase database() { return db; }
 
+    static QMutex& getMutex() { return dbMutex; }
     static void release();
 
     ~DBManager();

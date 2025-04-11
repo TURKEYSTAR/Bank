@@ -16,13 +16,13 @@
 #include "uiclient.h"
 #include "uilistnotif.h"
 #include "uiaccount.h"
+#include "uidashboard.h"
 
 class Controller : public QObject
 {
     Q_OBJECT
 
 private:
-    // Le contrôleur dispose des références aux fenêtres qu'il gère
     UILoginIn uiLoginIn {this};
     UIUser uiUser {this};
     UIListUser uiListUser {this};
@@ -32,6 +32,8 @@ private:
     UIListTransaction uiListTransaction {this};
     UIAccount uiAccount {this};
     UIListNotif uiListNotif {this};
+    UIDashboard uiDashboard {this};
+
 
     Role connectedUserType;
     User connectedUser;
@@ -40,8 +42,9 @@ private:
     AccountModel* accountModel = new AccountModel;
     TransactionModel* transactionModel = new TransactionModel;
     NotificationModel* notificationModel = new NotificationModel;
+    DashboardModel* dashboardModel = new DashboardModel;
 
-    Service service {userModel, accountModel, transactionModel}; // Le classe service pour déclencher les fonctionnalités
+    Service service {userModel, accountModel, transactionModel};
 
 public:
     explicit Controller(QObject* parent = nullptr);
@@ -56,6 +59,13 @@ private slots:
     void onDelete_UIListUser();
     void onClose_UIListUser();
     void onComboBoxRoleChanged_UIUser();
+    void onDashboard_UIUser();
+
+    /*
+     * Les slots de la fenêtre UIDashboard
+     */
+    void onActiverClicked();
+    void onDesactiverClicked();
 
     /*
      * Les slots de la fenêtre UIUser

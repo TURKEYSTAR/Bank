@@ -6,6 +6,7 @@
 #include "accountmodel.h"
 #include "transactionmodel.h"
 #include "notificationmodel.h"
+#include "dashboardmodel.h"
 
 class Service
 {
@@ -43,12 +44,16 @@ public:
     Service(UserModel* userModel);
     Service(UserModel* userModel, AccountModel* accountModel);
     Service(UserModel* userModel, AccountModel* accountModel, TransactionModel* transactionModel);
+    Service(UserModel* userModel, AccountModel* accountModel, TransactionModel* transactionModel, DashboardModel* dashboardModel);
+    Service(UserModel* userModel, AccountModel* accountModel, TransactionModel* transactionModel, NotificationModel* notificationModel);
+    Service(UserModel* userModel, AccountModel* accountModel, TransactionModel* transactionModel, NotificationModel* notificationModel, DashboardModel* dashboardModel);
 
 private:
     UserModel* userModel;
     AccountModel* accountModel;
     TransactionModel* transactionModel;
     NotificationModel* notificationModel;
+    DashboardModel* dashboardModel;
     DBManager* dbManager;
 
     bool effectuerUnRetrait(int idClient, double montant);

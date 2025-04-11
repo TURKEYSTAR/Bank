@@ -17,6 +17,7 @@
 #include "uilistnotif.h"
 #include "uiaccount.h"
 #include "uidashboard.h"
+#include "uimessages.h"
 
 class Controller : public QObject
 {
@@ -33,6 +34,7 @@ private:
     UIAccount uiAccount {this};
     UIListNotif uiListNotif {this};
     UIDashboard uiDashboard {this};
+    Uimessages uiMessages {this};
 
 
     Role connectedUserType;
@@ -43,6 +45,7 @@ private:
     TransactionModel* transactionModel = new TransactionModel;
     NotificationModel* notificationModel = new NotificationModel;
     DashboardModel* dashboardModel = new DashboardModel;
+    MessageModel* messageModel = new MessageModel;
 
     Service service {userModel, accountModel, transactionModel};
 
@@ -66,6 +69,7 @@ private slots:
      */
     void onActiverClicked();
     void onDesactiverClicked();
+    void onFermerClicked_UIDashboard();
 
     /*
      * Les slots de la fenêtre UIUser
@@ -95,6 +99,7 @@ private slots:
     void onCancel_UIClient();
     void onProfile_UIClient();
     void onNotif_UIClient();
+    void onMessage_UIClient();
 
     /*
      * Les slots de la fenêtre UIListClient
@@ -132,6 +137,12 @@ private slots:
     void onCreate_UIAccount();
     void onUpdate_UIAccount();
     void onClose_UIAccount();
+
+    /*
+     * Les slots de la fenêtre UIMessages
+     */
+    void onFermerClicked_UIMessage();
+    //void onEnvoyerClicked();
 };
 #endif // CONTROLLER_H
 

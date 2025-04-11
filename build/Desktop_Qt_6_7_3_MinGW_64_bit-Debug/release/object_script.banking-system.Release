@@ -2,6 +2,8 @@ release/account.o
 release/accountmodel.o
 release/dashboardmodel.o
 release/main.o
+release/message.o
+release/messagemodel.o
 release/notification.o
 release/notificationmodel.o
 release/notificationtype.o
@@ -26,6 +28,7 @@ release/transactionmodel.o
 release/uilisttransaction.o
 release/uiaccount.o
 release/moc_dashboardmodel.o
+release/moc_messagemodel.o
 release/moc_controller.o
 release/moc_uiclient.o
 release/moc_uidashboard.o

@@ -13,6 +13,8 @@ SOURCES += \
     accountmodel.cpp \
     dashboardmodel.cpp \
     main.cpp \
+    message.cpp \
+    messagemodel.cpp \
     notification.cpp \
     notificationmodel.cpp \
     notificationtype.cpp \
@@ -41,6 +43,8 @@ HEADERS += \
     account.h \
     accountmodel.h \
     dashboardmodel.h \
+    message.h \
+    messagemodel.h \
     notification.h \
     notificationmodel.h \
     notificationtype.h \

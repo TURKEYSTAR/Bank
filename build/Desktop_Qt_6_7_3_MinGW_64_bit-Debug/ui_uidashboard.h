@@ -58,6 +58,9 @@ public:
     QPushButton *pushButtonDesactiver;
     QLabel *labelRecentTransactions;
     QTableView *tableViewRecentTransactions;
+    QGridLayout *gridLayout_2;
+    QPushButton *pushButtonFermer;
+    QSpacerItem *horizontalSpacer_3;
     QWidget *tabDetails;
     QVBoxLayout *verticalLayout_6;
     QTableView *tableViewAccounts;
@@ -72,7 +75,7 @@ public:
     {
         if (UIDashboard->objectName().isEmpty())
             UIDashboard->setObjectName("UIDashboard");
-        UIDashboard->resize(542, 550);
+        UIDashboard->resize(542, 541);
         centralwidget = new QWidget(UIDashboard);
         centralwidget->setObjectName("centralwidget");
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -204,6 +207,20 @@ public:
 
         verticalLayout_2->addWidget(tableViewRecentTransactions);
 
+        gridLayout_2 = new QGridLayout();
+        gridLayout_2->setObjectName("gridLayout_2");
+        pushButtonFermer = new QPushButton(tabOverview);
+        pushButtonFermer->setObjectName("pushButtonFermer");
+
+        gridLayout_2->addWidget(pushButtonFermer, 0, 1, 1, 1);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        gridLayout_2->addItem(horizontalSpacer_3, 0, 0, 1, 1);
+
+
+        verticalLayout_2->addLayout(gridLayout_2);
+
         tabWidget->addTab(tabOverview, QString());
         tabDetails = new QWidget();
         tabDetails->setObjectName("tabDetails");
@@ -268,6 +285,7 @@ public:
         pushButtonActiver_2->setText(QCoreApplication::translate("UIDashboard", "Activer", nullptr));
         pushButtonDesactiver->setText(QCoreApplication::translate("UIDashboard", "D\303\251sactiver", nullptr));
         labelRecentTransactions->setText(QCoreApplication::translate("UIDashboard", "Transactions R\303\251centes", nullptr));
+        pushButtonFermer->setText(QCoreApplication::translate("UIDashboard", "Fermer", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabOverview), QCoreApplication::translate("UIDashboard", "Aper\303\247u", nullptr));
         pushButtonActiver->setText(QCoreApplication::translate("UIDashboard", "Activer", nullptr));
         pushButtonLimiter->setText(QCoreApplication::translate("UIDashboard", "Limiter", nullptr));

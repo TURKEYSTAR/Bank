@@ -43,10 +43,7 @@ public:
     Notification(int idUser, QString title, QString message, QString date, bool isRead, NotificationType type);
     Notification(int id, int idUser, QString title, QString message, QString date, bool isRead, NotificationType type);
     Notification(int idUser, NotificationType type, QString date, const QString& additionalInfo = "");
-
-    // New constructor with statut
-    Notification(int id, int idUser, QString title, QString message, QString date,
-                 bool isRead, NotificationType type, QString statut);
+    Notification(int id, int idUser, QString title, QString message, QString date, bool isRead, NotificationType type, QString statut);
 };
 
 #endif // NOTIFICATION_H

@@ -29,13 +29,13 @@ class Ui_Uimessages
 public:
     QWidget *centralwidget;
     QHBoxLayout *mainLayout;
+    QPushButton *pushButtonFermer;
     QListWidget *userList;
-    QWidget *messageArea;
     QVBoxLayout *messageLayout;
     QTextEdit *messageDisplay;
     QHBoxLayout *inputLayout;
     QLineEdit *messageInput;
-    QPushButton *sendButton;
+    QPushButton *pushButtonSend;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -43,23 +43,24 @@ public:
     {
         if (Uimessages->objectName().isEmpty())
             Uimessages->setObjectName("Uimessages");
-        Uimessages->resize(800, 600);
+        Uimessages->resize(530, 285);
         centralwidget = new QWidget(Uimessages);
         centralwidget->setObjectName("centralwidget");
         mainLayout = new QHBoxLayout(centralwidget);
         mainLayout->setObjectName("mainLayout");
+        pushButtonFermer = new QPushButton(centralwidget);
+        pushButtonFermer->setObjectName("pushButtonFermer");
+
+        mainLayout->addWidget(pushButtonFermer);
+
         userList = new QListWidget(centralwidget);
         userList->setObjectName("userList");
-        userList->setMinimumWidth(200);
 
         mainLayout->addWidget(userList);
 
-        messageArea = new QWidget(centralwidget);
-        messageArea->setObjectName("messageArea");
-        messageLayout = new QVBoxLayout(messageArea);
+        messageLayout = new QVBoxLayout();
         messageLayout->setObjectName("messageLayout");
-        messageLayout->setContentsMargins(0, 0, 0, 0);
-        messageDisplay = new QTextEdit(messageArea);
+        messageDisplay = new QTextEdit(centralwidget);
         messageDisplay->setObjectName("messageDisplay");
         messageDisplay->setReadOnly(true);
 
@@ -67,25 +68,26 @@ public:
 
         inputLayout = new QHBoxLayout();
         inputLayout->setObjectName("inputLayout");
-        messageInput = new QLineEdit(messageArea);
+        messageInput = new QLineEdit(centralwidget);
         messageInput->setObjectName("messageInput");
 
         inputLayout->addWidget(messageInput);
 
-        sendButton = new QPushButton(messageArea);
-        sendButton->setObjectName("sendButton");
+        pushButtonSend = new QPushButton(centralwidget);
+        pushButtonSend->setObjectName("pushButtonSend");
 
-        inputLayout->addWidget(sendButton);
+        inputLayout->addWidget(pushButtonSend);
 
 
         messageLayout->addLayout(inputLayout);
 
 
-        mainLayout->addWidget(messageArea);
+        mainLayout->addLayout(messageLayout);
 
         Uimessages->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Uimessages);
         menubar->setObjectName("menubar");
+        menubar->setGeometry(QRect(0, 0, 530, 18));
         Uimessages->setMenuBar(menubar);
         statusbar = new QStatusBar(Uimessages);
         statusbar->setObjectName("statusbar");
@@ -98,8 +100,9 @@ public:
 
     void retranslateUi(QMainWindow *Uimessages)
     {
-        Uimessages->setWindowTitle(QCoreApplication::translate("Uimessages", "Messagerie Interne", nullptr));
-        sendButton->setText(QCoreApplication::translate("Uimessages", "Envoyer", nullptr));
+        Uimessages->setWindowTitle(QCoreApplication::translate("Uimessages", "Direct messages", nullptr));
+        pushButtonFermer->setText(QCoreApplication::translate("Uimessages", "Fermer", nullptr));
+        pushButtonSend->setText(QCoreApplication::translate("Uimessages", "Envoyer", nullptr));
     } // retranslateUi
 
 };

@@ -594,6 +594,15 @@ void Controller::onNotif_UIClient()
     uiListNotif.show();
 }
 
+void Controller::onMessage_UIClient()
+{
+    uiClient.hide();
+
+    int userId = connectedUser.getId();
+    uiMessages.setCurrentUserId(userId);
+    uiMessages.show();
+}
+
 /*
  * Les slots de la fenêtre UIListClient
  */
@@ -1016,6 +1025,25 @@ void Controller::onDesactiverClicked()
 {
     dashboardModel->disableNotifications();
     uiDashboard.updateNotificationButtons();
+}
+
+void Controller::onFermerClicked_UIDashboard()
+{
+    uiDashboard.hide();
+    uiListUser.show();
+}
+
+/*
+ * Les slots de UIMessages
+void Controller::onEnvoyerClicked()
+{
+    uiMessages.onSendClicked();
+}
+*/
+void Controller::onFermerClicked_UIMessage()
+{
+    uiMessages.hide();
+    uiClient.show();
 }
 
 Controller::~Controller()

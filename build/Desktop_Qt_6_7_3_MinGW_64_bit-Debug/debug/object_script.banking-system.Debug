@@ -2,6 +2,8 @@ debug/account.o
 debug/accountmodel.o
 debug/dashboardmodel.o
 debug/main.o
+debug/message.o
+debug/messagemodel.o
 debug/notification.o
 debug/notificationmodel.o
 debug/notificationtype.o
@@ -26,6 +28,7 @@ debug/transactionmodel.o
 debug/uilisttransaction.o
 debug/uiaccount.o
 debug/moc_dashboardmodel.o
+debug/moc_messagemodel.o
 debug/moc_controller.o
 debug/moc_uiclient.o
 debug/moc_uidashboard.o

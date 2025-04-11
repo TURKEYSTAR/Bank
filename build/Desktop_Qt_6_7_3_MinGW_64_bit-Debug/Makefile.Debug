@@ -7533,7 +7533,9 @@ debug/transactionmodel.o: ../../transactionmodel.cpp ../../transactionmodel.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QSortFilterProxyModel \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qsortfilterproxymodel.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qabstractproxymodel.h \
-		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.7.3/mingw_64/include/QtSql/QSqlError \
+		C:/Qt/6.7.3/mingw_64/include/QtSql/qsqlerror.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\transactionmodel.o ..\..\transactionmodel.cpp
 
 debug/uilisttransaction.o: ../../uilisttransaction.cpp ../../uilisttransaction.h \

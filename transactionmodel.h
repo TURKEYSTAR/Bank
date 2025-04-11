@@ -32,6 +32,8 @@ public:
     void setAccountId(int id);
     QList<Transaction> list();
 
+    int countMonthlyTransactions(int clientId);
+
     void readAll();
     void readAll(int accountId);
     void setHeaderTitle();

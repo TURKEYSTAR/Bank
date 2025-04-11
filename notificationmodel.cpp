@@ -70,7 +70,7 @@ void NotificationModel::readBy(QString notificationType)
 
     QSqlQuery query(dbManager->database());
 
-    this->setQuery("SELECT id, title, message, date, isRead, type, statut "
+    this->setQuery("SELECT id, title, message, date, isRead, type, statut"
                    "FROM t_notifications "
                    "WHERE type = :type "
                    "ORDER BY date DESC");

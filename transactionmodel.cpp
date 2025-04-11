@@ -5,6 +5,7 @@
 #include "notificationmodel.h"
 #include <QStandardItemModel>
 #include <QSortFilterProxyModel>
+#include <QSqlError>
 
 TransactionModel::TransactionModel()
 {
@@ -181,6 +182,28 @@ void TransactionModel::filtrerTransactions(const QString& type, const QString& d
         return;
     }
 }
+
+int TransactionModel::countMonthlyTransactions(int clientId)
+{
+    dbManager->open();
+
+    QSqlQuery query(dbManager->database());
+
+    query.prepare("SELECT COUNT(*) FROM t_transactions WHERE idClient = :idClient");
+    query.bindValue(":idClient", clientId);
+
+
+    int count = 0;
+    if (query.exec() && query.next()) {
+        count = query.value(0).toInt();
+    } else {
+        qDebug() << "Erreur lors du comptage des transactions mensuelles:" << query.lastError().text();
+    }
+    dbManager->close();
+
+    return count;
+}
+
 
 void TransactionModel::refresh()
 {

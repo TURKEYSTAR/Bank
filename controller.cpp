@@ -176,6 +176,7 @@ void Controller::onClose_UIListUser()
 
 void Controller::onDashboard_UIUser()
 {
+    uiListUser.hide();
     uiDashboard.setModel(dashboardModel);
     uiDashboard.show();
 }
@@ -469,6 +470,24 @@ void Controller::onVersement_UIClient()
 
 void Controller::onHistorique_UIClient()
 {
+    QModelIndex index = accountModel->getSelectionModel()->currentIndex();
+    if (!index.isValid())
+    {
+        uiClient.warning("Ouverture de vos comptes",
+                         "Veuillez sélectionner un de vos comptes svp...");
+        return;
+    }
+
+    // Get account information
+    QSqlRecord record = accountModel->record(index.row());
+    // Check if account is frozen (GELER)
+    QString statut = record.value("statut").toString().trimmed().toUpper();
+    if (statut == "GELER") {
+        uiClient.warning("Compte gelé",
+                         "Ce compte est gelé. Aucune opération n'est autorisée.");
+        return;
+    }
+
     uiClient.hide();
     uiListTransaction.setTableViewModel(transactionModel);
     uiListTransaction.show();
@@ -520,7 +539,7 @@ void Controller::onOK_UIClient()
     }
 
     if (ok)
-    {        
+    {
         // -
         QString transaction_message;
         bool status {true};

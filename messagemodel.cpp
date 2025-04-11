@@ -142,16 +142,18 @@ QList<Message> MessageModel::getConversation(int userId1, int userId2)
     dbManager->open();
     QSqlQuery query;
     query.prepare(R"(
-        SELECT expediteur_id, destinataire_id, contenu, date_envoi FROM t_messages
-        WHERE
-            (expediteur_id = :user1 AND destinataire_id = :user2)
-            OR
-            (expediteur_id = :user2 AND destinataire_id = :user1)
-        ORDER BY date_envoi ASC
-    )");
+    SELECT expediteur_id, destinataire_id, contenu, date_envoi FROM t_messages
+    WHERE
+        (expediteur_id = :user1a AND destinataire_id = :user2a)
+        OR
+        (expediteur_id = :user2b AND destinataire_id = :user1b)
+    ORDER BY date_envoi ASC
+)");
+    query.bindValue(":user1a", userId1);
+    query.bindValue(":user2a", userId2);
+    query.bindValue(":user2b", userId2);
+    query.bindValue(":user1b", userId1);
 
-    query.bindValue(":user1", userId1);
-    query.bindValue(":user2", userId2);
 
     if (!query.exec()) {
         qWarning() << "Error retrieving messages:" << query.lastError().text();

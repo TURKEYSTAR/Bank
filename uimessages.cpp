@@ -40,6 +40,7 @@ void Uimessages::loadUsers()
 {
     qDebug() << "Loading users, currentUserId:" << currentUserId;
 
+    ui->userList->clear();
     QList<QPair<int, QString>> users = messageModel->getAllUsers();
 
     qDebug() << "Users count:" << users.size();

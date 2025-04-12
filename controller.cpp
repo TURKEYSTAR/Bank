@@ -1004,7 +1004,19 @@ void Controller::onRejeterClicked()
 void Controller::onClose_UIListNotif()
 {
     uiListNotif.hide();
-    uiClient.show();
+    switch (connectedUser.getEnumRole()) {
+    case ADMINISTRATEUR:
+        uiListUser.show();
+        break;
+    case GESTIONNAIRE:
+        uiListClient.show();
+        break;
+    case CLIENT:
+        uiClient.show();
+        break;
+    default:
+        break;
+    }
 }
 
 void Controller::onOuvrir_UIListNotif()
@@ -1035,15 +1047,23 @@ void Controller::onFermerClicked_UIDashboard()
 
 /*
  * Les slots de UIMessages
-void Controller::onEnvoyerClicked()
-{
-    uiMessages.onSendClicked();
-}
 */
 void Controller::onFermerClicked_UIMessage()
 {
     uiMessages.hide();
-    uiClient.show();
+    switch (connectedUser.getEnumRole()) {
+    case ADMINISTRATEUR:
+        uiListUser.show();
+        break;
+    case GESTIONNAIRE:
+        uiListClient.show();
+        break;
+    case CLIENT:
+        uiClient.show();
+        break;
+    default:
+        break;
+    }
 }
 
 Controller::~Controller()

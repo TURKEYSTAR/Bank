@@ -20,6 +20,7 @@ UIListUser::UIListUser(QObject* controller) :
     connect(ui->pushButtonUpdate, SIGNAL(clicked()), controller, SLOT(onUpdate_UIListUser()));
     connect(ui->pushButtonNotification, SIGNAL(clicked()), controller, SLOT(onNotif_UIClient()));
     connect(ui->pushButtonDashboard, SIGNAL(clicked()), controller, SLOT(onDashboard_UIUser()));
+    connect(ui->pushButtonMessage, SIGNAL(clicked()), controller, SLOT(onMessage_UIClient()));
 }
 
 void UIListUser::setTableViewModel(UserModel* userModel)

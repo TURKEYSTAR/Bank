@@ -33,6 +33,7 @@ public:
     QLabel *labelTitle;
     QSpacerItem *horizontalSpacerLeft;
     QPushButton *pushButtonNotification;
+    QPushButton *pushButtonMessage;
     QPushButton *pushButtonDashboard;
     QWidget *horizontalLayoutWidget_3;
     QHBoxLayout *horizontalLayoutTableview;
@@ -77,6 +78,11 @@ public:
         pushButtonNotification->setObjectName("pushButtonNotification");
 
         horizontalLayoutNorth->addWidget(pushButtonNotification);
+
+        pushButtonMessage = new QPushButton(horizontalLayoutWidget);
+        pushButtonMessage->setObjectName("pushButtonMessage");
+
+        horizontalLayoutNorth->addWidget(pushButtonMessage);
 
         pushButtonDashboard = new QPushButton(horizontalLayoutWidget);
         pushButtonDashboard->setObjectName("pushButtonDashboard");
@@ -139,6 +145,7 @@ public:
         UIListUser->setWindowTitle(QCoreApplication::translate("UIListUser", "Gestion des utilisateurs - Admin : ", nullptr));
         labelTitle->setText(QCoreApplication::translate("UIListUser", "Les utilisateurs", nullptr));
         pushButtonNotification->setText(QCoreApplication::translate("UIListUser", "Notifications", nullptr));
+        pushButtonMessage->setText(QCoreApplication::translate("UIListUser", "Message", nullptr));
         pushButtonDashboard->setText(QCoreApplication::translate("UIListUser", "Dashboard", nullptr));
         pushButtonUpdate->setText(QCoreApplication::translate("UIListUser", "Modifier", nullptr));
         pushButtonDelete->setText(QCoreApplication::translate("UIListUser", "Supprimer", nullptr));

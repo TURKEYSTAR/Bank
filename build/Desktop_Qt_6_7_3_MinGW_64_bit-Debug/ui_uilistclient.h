@@ -33,6 +33,7 @@ public:
     QLabel *labelTitle;
     QSpacerItem *horizontalSpacerLeft;
     QPushButton *pushButton;
+    QPushButton *pushButtonMessage;
     QWidget *horizontalLayoutWidget_Tableview;
     QHBoxLayout *horizontalLayoutTableview;
     QTableView *tableViewClients;
@@ -75,6 +76,11 @@ public:
         pushButton->setObjectName("pushButton");
 
         horizontalLayoutNorth->addWidget(pushButton);
+
+        pushButtonMessage = new QPushButton(horizontalLayoutWidget);
+        pushButtonMessage->setObjectName("pushButtonMessage");
+
+        horizontalLayoutNorth->addWidget(pushButtonMessage);
 
         horizontalLayoutWidget_Tableview = new QWidget(centralwidget);
         horizontalLayoutWidget_Tableview->setObjectName("horizontalLayoutWidget_Tableview");
@@ -127,6 +133,7 @@ public:
         UIListClient->setWindowTitle(QCoreApplication::translate("UIListClient", "Gestion des clients - Gestionnaire : ", nullptr));
         labelTitle->setText(QCoreApplication::translate("UIListClient", "    Les clients", nullptr));
         pushButton->setText(QCoreApplication::translate("UIListClient", "Notifications", nullptr));
+        pushButtonMessage->setText(QCoreApplication::translate("UIListClient", "Message", nullptr));
         pushButtonOuvrir->setText(QCoreApplication::translate("UIListClient", "Ouvrir", nullptr));
         pushButtonClose->setText(QCoreApplication::translate("UIListClient", "Fermer", nullptr));
     } // retranslateUi

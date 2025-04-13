@@ -27,12 +27,13 @@ public:
     ~TransactionModel() {}
     QItemSelectionModel* getSelectionModel() { return selectionModel; }
     bool checkNotificationsEnabled() const;
-    void create(Transaction transaction);
+    int create(Transaction transaction);
     void refresh();
     void setAccountId(int id);
     QList<Transaction> list();
 
     int countMonthlyTransactions(int clientId);
+    int countTransactionsByAccount(int accountId);
 
     void readAll();
     void readAll(int accountId);

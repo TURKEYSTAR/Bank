@@ -1,6 +1,7 @@
 #include "service.h"
 #include "user.h"
 #include "dbmanager.h"
+#include "notificationsettings.h"
 #include <QtDebug>
 #include <QMessageBox>
 #include <QSqlError>
@@ -148,17 +149,21 @@ bool Service::effectuerUnRetrait(int idClient, double montant)
     QSqlField fieldId = selectedRecord.field(0);
     int accountId = fieldId.value().toInt();
 
-    Account account = accountModel->read(accountId);
-
-    // Check if account is frozen
-    if (account.getStatut() == "GELER") {
-        QMessageBox::warning(nullptr, "Opération impossible", "Désolé, votre compte est gelé. Veuillez vous rapprocher de votre gestionnaire.");
+    int transactionCount = transactionModel->countTransactionsByAccount(accountId);
+    if (transactionCount >= 25) {
+        QMessageBox::warning(nullptr, "Transaction refusée", "Ce compte a déjà effectué plus de 25 transactions.");
         return false;
     }
 
-    // Check if balance is sufficient
+    Account account = accountModel->read(accountId);
+
+    if (account.getStatut() == "GELER") {
+        QMessageBox::warning(nullptr, "Opération impossible", "Désolé, votre compte est gelé.");
+        return false;
+    }
+
     if (account.getBalance() < montant) {
-        QMessageBox::warning(nullptr, "Opération impossible", "Solde insuffisant pour effectuer ce retrait.");
+        QMessageBox::warning(nullptr, "Opération impossible", "Solde insuffisant.");
         return false;
     }
 
@@ -171,7 +176,16 @@ bool Service::effectuerUnRetrait(int idClient, double montant)
 
     Transaction transaction("Retrait", idClient, accountId, -1, account.getNumber(), "NULL", montant,
                             today.toString("yyyy-MM-ddT") + now.toString("HH:mm:ss.zzz"), "Completed");
-    transactionModel->create(transaction);
+
+    int transactionId = transactionModel->create(transaction);
+    NotificationSettings notification;
+
+    if (notification.getStatut() == "ACTIVER") {
+        Service::createNotificationForTransaction(transaction, transactionId);
+        qDebug("Transaction added and notification created!");
+    } else {
+        qDebug("Transaction added without notification (statut = DESACTIVER).");
+    }
 
     return true;
 }
@@ -186,9 +200,8 @@ void Service::effectuerUnVersement(int idClient, double montant)
 
     Account account = accountModel->read(accountId);
 
-    // Check if account is frozen
     if (account.getStatut() == "GELER") {
-        QMessageBox::warning(nullptr, "Opération impossible", "Désolé, votre compte est gelé. Veuillez vous rapprocher de votre gestionnaire.");
+        QMessageBox::warning(nullptr, "Opération impossible", "Désolé, votre compte est gelé.");
         return;
     }
 
@@ -201,7 +214,16 @@ void Service::effectuerUnVersement(int idClient, double montant)
 
     Transaction transaction("Versement", idClient, -1, accountId, "NULL", account.getNumber(), montant,
                             today.toString("yyyy-MM-ddT") + now.toString("HH:mm:ss.zzz"), "Completed");
-    transactionModel->create(transaction);
+
+    int transactionId = transactionModel->create(transaction);
+    NotificationSettings notification;
+
+    if (notification.getStatut() == "ACTIVER") {
+        Service::createNotificationForTransaction(transaction, transactionId);
+        qDebug("Transaction added and notification created!");
+    } else {
+        qDebug("Transaction added without notification (statut = DESACTIVER).");
+    }
 }
 
 void Service::effectuerUnVirement(int idClient, QString numeroCompteBeneficiaire, double montant)
@@ -212,11 +234,9 @@ void Service::effectuerUnVirement(int idClient, QString numeroCompteBeneficiaire
     QSqlField fieldId = selectedRecord.field(0);
     int accountId = fieldId.value().toInt();
 
-    // Get sender account
     Account senderAccount = accountModel->read(accountId);
-
-    // Check if recipient account exists
     Account recipientAccount = accountModel->readByAccountNumber(numeroCompteBeneficiaire);
+
     if (recipientAccount.getNumber().isEmpty()) {
         throw std::runtime_error("Compte bénéficiaire introuvable");
     }
@@ -227,7 +247,16 @@ void Service::effectuerUnVirement(int idClient, QString numeroCompteBeneficiaire
     Transaction transaction("Virement", idClient, accountId, recipientAccount.getId(),
                             senderAccount.getNumber(), recipientAccount.getNumber(), montant,
                             today.toString("yyyy-MM-ddT") + now.toString("HH:mm:ss.zzz"), "In progress");
-    transactionModel->create(transaction);
+
+    int transactionId = transactionModel->create(transaction);
+    NotificationSettings notification;
+
+    if (notification.getStatut() == "ACTIVER") {
+        Service::createNotificationForTransaction(transaction, transactionId);
+        qDebug("Transaction added and notification created!");
+    } else {
+        qDebug("Transaction added without notification (statut = DESACTIVER).");
+    }
 }
 
 void Service::executeTransaction(QMap<QString, QString> input, bool &status, QString &message)

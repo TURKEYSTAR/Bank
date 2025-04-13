@@ -21,6 +21,7 @@ UIDashboard::UIDashboard(QObject* controller) :
     //initialize();
 
     connect(ui->pushButtonFermer, SIGNAL(clicked()), controller, SLOT(onFermerClicked_UIDashboard()));
+    connect(ui->pushButtonFermer_2, SIGNAL(clicked()), controller, SLOT(onFermerClicked_UIDashboard()));
     connect(ui->pushButtonActiver_2, SIGNAL(clicked()), controller, SLOT(onActiverClicked()));
     connect(ui->pushButtonDesactiver, SIGNAL(clicked()), controller, SLOT(onDesactiverClicked()));
 }

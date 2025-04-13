@@ -6,6 +6,7 @@ debug/message.o
 debug/messagemodel.o
 debug/notification.o
 debug/notificationmodel.o
+debug/notificationsettings.o
 debug/notificationtype.o
 debug/transaction.o
 debug/uiabstractwindow.o

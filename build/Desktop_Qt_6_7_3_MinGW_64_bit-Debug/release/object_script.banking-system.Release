@@ -6,6 +6,7 @@ release/message.o
 release/messagemodel.o
 release/notification.o
 release/notificationmodel.o
+release/notificationsettings.o
 release/notificationtype.o
 release/transaction.o
 release/uiabstractwindow.o

@@ -13,8 +13,8 @@ void NotificationModel::create(Notification notification)
     QSqlQuery query(dbManager->database());
 
     query.prepare("INSERT INTO t_notifications "
-                  "(idUser, title, message, date, isRead, type, statut) VALUES "
-                  "(:idUser, :title, :message, :date, :isRead, :type, :statut)");
+                  "(idUser, title, message, date, isRead, type) VALUES "
+                  "(:idUser, :title, :message, :date, :isRead, :type)");
 
     query.bindValue(":idUser", notification.getIdUser());
     query.bindValue(":title", notification.getTitle());
@@ -22,7 +22,6 @@ void NotificationModel::create(Notification notification)
     query.bindValue(":date", notification.getDate());
     query.bindValue(":isRead", notification.getIsRead());
     query.bindValue(":type", NotificationHelper::typeToString(notification.getType()));
-    query.bindValue(":statut", notification.getStatut());
     query.exec();
     dbManager->close();
 
@@ -38,7 +37,7 @@ void NotificationModel::readAll()
     QSqlDatabase database = dbManager->database();
 
     this->setQuery("SELECT id, title, message,"
-                   " date, isRead, type, statut"
+                   " date, isRead, type"
                    " FROM t_notifications", database);
     setHeaders();
 
@@ -70,7 +69,7 @@ void NotificationModel::readBy(QString notificationType)
 
     QSqlQuery query(dbManager->database());
 
-    this->setQuery("SELECT id, title, message, date, isRead, type, statut"
+    this->setQuery("SELECT id, title, message, date, isRead, type "
                    "FROM t_notifications "
                    "WHERE type = :type "
                    "ORDER BY date DESC");

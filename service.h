@@ -6,6 +6,7 @@
 #include "accountmodel.h"
 #include "transactionmodel.h"
 #include "notificationmodel.h"
+
 #include "dashboardmodel.h"
 
 class Service

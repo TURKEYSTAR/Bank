@@ -17,6 +17,7 @@ SOURCES += \
     messagemodel.cpp \
     notification.cpp \
     notificationmodel.cpp \
+    notificationsettings.cpp \
     notificationtype.cpp \
     transaction.cpp \
     uiabstractwindow.cpp \
@@ -47,6 +48,7 @@ HEADERS += \
     messagemodel.h \
     notification.h \
     notificationmodel.h \
+    notificationsettings.h \
     notificationtype.h \
     transaction.h \
     uiabstractwindow.h \

@@ -58,6 +58,7 @@ SOURCES       = ..\..\account.cpp \
 		..\..\messagemodel.cpp \
 		..\..\notification.cpp \
 		..\..\notificationmodel.cpp \
+		..\..\notificationsettings.cpp \
 		..\..\notificationtype.cpp \
 		..\..\transaction.cpp \
 		..\..\uiabstractwindow.cpp \
@@ -101,6 +102,7 @@ OBJECTS       = debug/account.o \
 		debug/messagemodel.o \
 		debug/notification.o \
 		debug/notificationmodel.o \
+		debug/notificationsettings.o \
 		debug/notificationtype.o \
 		debug/transaction.o \
 		debug/uiabstractwindow.o \
@@ -145,6 +147,7 @@ DIST          =  ..\..\account.h \
 		..\..\messagemodel.h \
 		..\..\notification.h \
 		..\..\notificationmodel.h \
+		..\..\notificationsettings.h \
 		..\..\notificationtype.h \
 		..\..\transaction.h \
 		..\..\uiabstractwindow.h \
@@ -173,6 +176,7 @@ DIST          =  ..\..\account.h \
 		..\..\messagemodel.cpp \
 		..\..\notification.cpp \
 		..\..\notificationmodel.cpp \
+		..\..\notificationsettings.cpp \
 		..\..\notificationtype.cpp \
 		..\..\transaction.cpp \
 		..\..\uiabstractwindow.cpp \
@@ -213,10 +217,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) banking-system.zip $(SOURCES) $(DIST) ..\..\banking-system.pro C:\Qt\6.7.3\mingw_64\mkspecs\features\spec_pre.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\device_config.prf C:\Qt\6.7.3\mingw_64\mkspecs\common\sanitize.conf C:\Qt\6.7.3\mingw_64\mkspecs\common\gcc-base.conf C:\Qt\6.7.3\mingw_64\mkspecs\common\g++-base.conf C:\Qt\6.7.3\mingw_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\Qt\6.7.3\mingw_64\mkspecs\common\windows-vulkan.conf C:\Qt\6.7.3\mingw_64\mkspecs\common\g++-win32.conf C:\Qt\6.7.3\mingw_64\mkspecs\common\windows-desktop.conf C:\Qt\6.7.3\mingw_64\mkspecs\qconfig.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_ext_freetype.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_ext_libjpeg.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_ext_libpng.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_bodymovin_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_charts.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_charts_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_chartsqml.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_chartsqml_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_core.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_datavisualization.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_datavisualization_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_datavisualizationqml.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_datavisualizationqml_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_entrypoint_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_example_icons_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_freetype_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_harfbuzz_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_help.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_jpeg_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labsanimation.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labsanimation_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labssettings.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labssettings_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labssharedimage.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labssharedimage_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_linguist.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_network.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_openglwidgets.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_openglwidgets_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_png_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_positioning.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_positioningquick.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_positioningquick_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qdoccatch_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qdoccatchconversions_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qdoccatchgenerators_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlbuiltins.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlbuiltins_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlcompiler.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlcore.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlcore_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmldom_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlintegration.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlintegration_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlls_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlnetwork.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlnetwork_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmltoolingsettings_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmltyperegistrar_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basic.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basic_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basicstyleimpl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basicstyleimpl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusion.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusion_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusionstyleimpl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusionstyleimpl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imagine.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imagine_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imaginestyleimpl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imaginestyleimpl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2material.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2material_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2materialstyleimpl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2materialstyleimpl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universal.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universal_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universalstyleimpl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universalstyleimpl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2windowsstyleimpl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2windowsstyleimpl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrolstestutilsprivate_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickeffects_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quicklayouts.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quicklayouts_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quicktestutilsprivate_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_remoteobjects.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_remoteobjects_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_remoteobjectsqml.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_remoteobjectsqml_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_repparser.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_repparser_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_svgwidgets.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_svgwidgets_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_tools_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_virtualkeyboard.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_virtualkeyboard_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_virtualkeyboardsettings.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_virtualkeyboardsettings_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_webchannelquick.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_webchannelquick_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\features\qt_functions.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\qt_config.prf C:\Qt\6.7.3\mingw_64\mkspecs\win32-g++\qmake.conf C:\Qt\6.7.3\mingw_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\6.7.3\mingw_64\mkspecs\features\exclusive_builds.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\toolchain.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\default_pre.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\win32\default_pre.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\resolve_config.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\default_post.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\build_pass.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\qml_debug.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\precompile_header.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\warn_on.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\permissions.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\qt.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\resources_functions.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\resources.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\moc.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\win32\opengl.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\uic.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\qmake_use.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\file_copies.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\win32\windows.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\testcase_targets.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\exceptions.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\yacc.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\lex.prf ..\..\banking-system.pro C:\Qt\6.7.3\mingw_64\lib\Qt6Widgets.prl C:\Qt\6.7.3\mingw_64\lib\Qt6Gui.prl C:\Qt\6.7.3\mingw_64\lib\Qt6Sql.prl C:\Qt\6.7.3\mingw_64\lib\Qt6Core.prl C:\Qt\6.7.3\mingw_64\lib\Qt6EntryPoint.prl    C:\Qt\6.7.3\mingw_64\mkspecs\features\data\dummy.cpp ..\..\account.h ..\..\accountmodel.h ..\..\dashboardmodel.h ..\..\message.h ..\..\messagemodel.h ..\..\notification.h ..\..\notificationmodel.h ..\..\notificationtype.h ..\..\transaction.h ..\..\uiabstractwindow.h ..\..\controller.h ..\..\dbmanager.h ..\..\service.h ..\..\uiclient.h ..\..\uidashboard.h ..\..\uilistnotif.h ..\..\uilistuser.h ..\..\uilistclient.h ..\..\uilistaccount.h ..\..\uiloginin.h ..\..\uimessages.h ..\..\uiprofile.h ..\..\uiuser.h ..\..\user.h ..\..\usermodel.h ..\..\transactionmodel.h ..\..\uilisttransaction.h ..\..\uiaccount.h  ..\..\account.cpp ..\..\accountmodel.cpp ..\..\dashboardmodel.cpp ..\..\main.cpp ..\..\message.cpp ..\..\messagemodel.cpp ..\..\notification.cpp ..\..\notificationmodel.cpp ..\..\notificationtype.cpp ..\..\transaction.cpp ..\..\uiabstractwindow.cpp ..\..\controller.cpp ..\..\dbmanager.cpp ..\..\service.cpp ..\..\uiclient.cpp ..\..\uidashboard.cpp ..\..\uilistnotif.cpp ..\..\uilistuser.cpp ..\..\uilistclient.cpp ..\..\uilistaccount.cpp ..\..\uiloginin.cpp ..\..\uimessages.cpp ..\..\uiprofile.cpp ..\..\uiuser.cpp ..\..\user.cpp ..\..\usermodel.cpp ..\..\transactionmodel.cpp ..\..\uilisttransaction.cpp ..\..\uiaccount.cpp ..\..\uiclient.ui ..\..\uidashboard.ui ..\..\uilistnotif.ui ..\..\uilistuser.ui ..\..\uilistclient.ui ..\..\uilistaccount.ui ..\..\uiloginin.ui ..\..\uimessages.ui ..\..\uiprofile.ui ..\..\uiuser.ui ..\..\uilisttransaction.ui ..\..\uiaccount.ui    
+	$(ZIP) banking-system.zip $(SOURCES) $(DIST) ..\..\..\..\banking-system.pro C:\Qt\6.7.3\mingw_64\mkspecs\features\spec_pre.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\device_config.prf C:\Qt\6.7.3\mingw_64\mkspecs\common\sanitize.conf C:\Qt\6.7.3\mingw_64\mkspecs\common\gcc-base.conf C:\Qt\6.7.3\mingw_64\mkspecs\common\g++-base.conf C:\Qt\6.7.3\mingw_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\Qt\6.7.3\mingw_64\mkspecs\common\windows-vulkan.conf C:\Qt\6.7.3\mingw_64\mkspecs\common\g++-win32.conf C:\Qt\6.7.3\mingw_64\mkspecs\common\windows-desktop.conf C:\Qt\6.7.3\mingw_64\mkspecs\qconfig.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_ext_freetype.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_ext_libjpeg.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_ext_libpng.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_bodymovin_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_charts.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_charts_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_chartsqml.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_chartsqml_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_core.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_datavisualization.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_datavisualization_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_datavisualizationqml.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_datavisualizationqml_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_entrypoint_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_example_icons_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_freetype_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_harfbuzz_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_help.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_jpeg_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labsanimation.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labsanimation_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labssettings.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labssettings_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labssharedimage.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labssharedimage_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_linguist.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_network.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_openglwidgets.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_openglwidgets_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_png_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_positioning.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_positioningquick.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_positioningquick_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qdoccatch_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qdoccatchconversions_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qdoccatchgenerators_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlbuiltins.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlbuiltins_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlcompiler.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlcore.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlcore_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmldom_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlintegration.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlintegration_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlls_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlnetwork.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlnetwork_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmltoolingsettings_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmltyperegistrar_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basic.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basic_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basicstyleimpl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2basicstyleimpl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusion.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusion_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusionstyleimpl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2fusionstyleimpl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imagine.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imagine_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imaginestyleimpl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2imaginestyleimpl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2material.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2material_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2materialstyleimpl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2materialstyleimpl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universal.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universal_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universalstyleimpl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2universalstyleimpl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2windowsstyleimpl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2windowsstyleimpl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickcontrolstestutilsprivate_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickeffects_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quicklayouts.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quicklayouts_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quicktestutilsprivate_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_remoteobjects.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_remoteobjects_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_remoteobjectsqml.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_remoteobjectsqml_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_repparser.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_repparser_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_svgwidgets.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_svgwidgets_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_tools_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_virtualkeyboard.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_virtualkeyboard_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_virtualkeyboardsettings.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_virtualkeyboardsettings_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_webchannelquick.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_webchannelquick_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\6.7.3\mingw_64\mkspecs\features\qt_functions.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\qt_config.prf C:\Qt\6.7.3\mingw_64\mkspecs\win32-g++\qmake.conf C:\Qt\6.7.3\mingw_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\6.7.3\mingw_64\mkspecs\features\exclusive_builds.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\toolchain.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\default_pre.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\win32\default_pre.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\resolve_config.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\default_post.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\build_pass.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\qml_debug.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\precompile_header.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\warn_on.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\permissions.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\qt.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\resources_functions.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\resources.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\moc.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\win32\opengl.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\uic.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\qmake_use.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\file_copies.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\win32\windows.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\testcase_targets.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\exceptions.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\yacc.prf C:\Qt\6.7.3\mingw_64\mkspecs\features\lex.prf ..\..\banking-system.pro C:\Qt\6.7.3\mingw_64\lib\Qt6Widgets.prl C:\Qt\6.7.3\mingw_64\lib\Qt6Gui.prl C:\Qt\6.7.3\mingw_64\lib\Qt6Sql.prl C:\Qt\6.7.3\mingw_64\lib\Qt6Core.prl C:\Qt\6.7.3\mingw_64\lib\Qt6EntryPoint.prl    C:\Qt\6.7.3\mingw_64\mkspecs\features\data\dummy.cpp ..\..\account.h ..\..\accountmodel.h ..\..\dashboardmodel.h ..\..\message.h ..\..\messagemodel.h ..\..\notification.h ..\..\notificationmodel.h ..\..\notificationsettings.h ..\..\notificationtype.h ..\..\transaction.h ..\..\uiabstractwindow.h ..\..\controller.h ..\..\dbmanager.h ..\..\service.h ..\..\uiclient.h ..\..\uidashboard.h ..\..\uilistnotif.h ..\..\uilistuser.h ..\..\uilistclient.h ..\..\uilistaccount.h ..\..\uiloginin.h ..\..\uimessages.h ..\..\uiprofile.h ..\..\uiuser.h ..\..\user.h ..\..\usermodel.h ..\..\transactionmodel.h ..\..\uilisttransaction.h ..\..\uiaccount.h  ..\..\account.cpp ..\..\accountmodel.cpp ..\..\dashboardmodel.cpp ..\..\main.cpp ..\..\message.cpp ..\..\messagemodel.cpp ..\..\notification.cpp ..\..\notificationmodel.cpp ..\..\notificationsettings.cpp ..\..\notificationtype.cpp ..\..\transaction.cpp ..\..\uiabstractwindow.cpp ..\..\controller.cpp ..\..\dbmanager.cpp ..\..\service.cpp ..\..\uiclient.cpp ..\..\uidashboard.cpp ..\..\uilistnotif.cpp ..\..\uilistuser.cpp ..\..\uilistclient.cpp ..\..\uilistaccount.cpp ..\..\uiloginin.cpp ..\..\uimessages.cpp ..\..\uiprofile.cpp ..\..\uiuser.cpp ..\..\user.cpp ..\..\usermodel.cpp ..\..\transactionmodel.cpp ..\..\uilisttransaction.cpp ..\..\uiaccount.cpp ..\..\uiclient.ui ..\..\uidashboard.ui ..\..\uilistnotif.ui ..\..\uilistuser.ui ..\..\uilistclient.ui ..\..\uilistaccount.ui ..\..\uiloginin.ui ..\..\uimessages.ui ..\..\uiprofile.ui ..\..\uiuser.ui ..\..\uilisttransaction.ui ..\..\uiaccount.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\account.o debug\accountmodel.o debug\dashboardmodel.o debug\main.o debug\message.o debug\messagemodel.o debug\notification.o debug\notificationmodel.o debug\notificationtype.o debug\transaction.o debug\uiabstractwindow.o debug\controller.o debug\dbmanager.o debug\service.o debug\uiclient.o debug\uidashboard.o debug\uilistnotif.o debug\uilistuser.o debug\uilistclient.o debug\uilistaccount.o debug\uiloginin.o debug\uimessages.o debug\uiprofile.o debug\uiuser.o debug\user.o debug\usermodel.o debug\transactionmodel.o debug\uilisttransaction.o debug\uiaccount.o debug\moc_dashboardmodel.o debug\moc_messagemodel.o debug\moc_controller.o debug\moc_uiclient.o debug\moc_uidashboard.o debug\moc_uilistnotif.o debug\moc_uilistuser.o debug\moc_uilistclient.o debug\moc_uilistaccount.o debug\moc_uiloginin.o debug\moc_uimessages.o debug\moc_uiprofile.o debug\moc_uiuser.o debug\moc_uilisttransaction.o debug\moc_uiaccount.o
+	-$(DEL_FILE) debug\account.o debug\accountmodel.o debug\dashboardmodel.o debug\main.o debug\message.o debug\messagemodel.o debug\notification.o debug\notificationmodel.o debug\notificationsettings.o debug\notificationtype.o debug\transaction.o debug\uiabstractwindow.o debug\controller.o debug\dbmanager.o debug\service.o debug\uiclient.o debug\uidashboard.o debug\uilistnotif.o debug\uilistuser.o debug\uilistclient.o debug\uilistaccount.o debug\uiloginin.o debug\uimessages.o debug\uiprofile.o debug\uiuser.o debug\user.o debug\usermodel.o debug\transactionmodel.o debug\uilisttransaction.o debug\uiaccount.o debug\moc_dashboardmodel.o debug\moc_messagemodel.o debug\moc_controller.o debug\moc_uiclient.o debug\moc_uidashboard.o debug\moc_uilistnotif.o debug\moc_uilistuser.o debug\moc_uilistclient.o debug\moc_uilistaccount.o debug\moc_uiloginin.o debug\moc_uimessages.o debug\moc_uiprofile.o debug\moc_uiuser.o debug\moc_uilisttransaction.o debug\moc_uiaccount.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -761,19 +765,51 @@ debug/moc_controller.cpp: ../../controller.h \
 		../../uilistclient.h \
 		../../uilistaccount.h \
 		ui_uilisttransaction.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QComboBox \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qcombobox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHBoxLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHeaderView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qheaderview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QSpacerItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QTableView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtableview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QWidget \
 		../../uilisttransaction.h \
 		../../uiclient.h \
 		../../uiprofile.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QFormLayout \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qformlayout.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLayout \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
-		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
 		../../uilistnotif.h \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/QStandardItemModel \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/qstandarditemmodel.h \
@@ -783,6 +819,9 @@ debug/moc_controller.cpp: ../../controller.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qtimer.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qbasictimer.h \
 		../../uimessages.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QListWidgetItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlistwidget.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlistview.h \
 		../../messagemodel.h \
 		../../message.h \
 		debug/moc_predefs.h \
@@ -2487,16 +2526,32 @@ debug/moc_uimessages.cpp: ../../uimessages.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qlocale.h \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/qguiapplication_platform.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabwidget.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QListWidgetItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlistwidget.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlistview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qrubberband.h \
 		../../messagemodel.h \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/QSqlQueryModel \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/qsqlquerymodel.h \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/qtsqlglobal.h \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/qtsql-config.h \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/qtsqlexports.h \
-		C:/Qt/6.7.3/mingw_64/include/QtCore/qabstractitemmodel.h \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/qsqldatabase.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QItemSelectionModel \
-		C:/Qt/6.7.3/mingw_64/include/QtCore/qitemselectionmodel.h \
 		../../dbmanager.h \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/QSqlDatabase \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QtDebug \
@@ -3992,19 +4047,51 @@ debug/main.o: ../../main.cpp ../../controller.h \
 		../../uilistclient.h \
 		../../uilistaccount.h \
 		ui_uilisttransaction.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QComboBox \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qcombobox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHBoxLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHeaderView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qheaderview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QSpacerItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QTableView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtableview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QWidget \
 		../../uilisttransaction.h \
 		../../uiclient.h \
 		../../uiprofile.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QFormLayout \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qformlayout.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLayout \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
-		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
 		../../uilistnotif.h \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/QStandardItemModel \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/qstandarditemmodel.h \
@@ -4014,10 +4101,11 @@ debug/main.o: ../../main.cpp ../../controller.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qtimer.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qbasictimer.h \
 		../../uimessages.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QListWidgetItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlistwidget.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlistview.h \
 		../../messagemodel.h \
-		../../message.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QApplication \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qapplication.h
+		../../message.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\..\main.cpp
 
 debug/message.o: ../../message.cpp ../../message.h \
@@ -4504,6 +4592,82 @@ debug/notificationmodel.o: ../../notificationmodel.cpp ../../notificationmodel.h
 		../../notificationtype.h \
 		../../transaction.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\notificationmodel.o ..\..\notificationmodel.cpp
+
+debug/notificationsettings.o: ../../notificationsettings.cpp ../../notificationsettings.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QString \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qstring.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qchar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qglobal.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtversionchecks.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtconfiginclude.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qconfig.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtcore-config.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtconfigmacros.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtcoreexports.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qcompilerdetection.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qprocessordetection.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qsystemdetection.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtdeprecationmarkers.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtpreprocessorsupport.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qassert.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtnoop.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtypes.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtversion.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtclasshelpermacros.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtypeinfo.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qsysinfo.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qlogging.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qflags.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qcompare_impl.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qatomic.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qbasicatomic.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qatomic_cxx11.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qgenericatomic.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qyieldcpu.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qconstructormacros.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qdarwinhelpers.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qexceptionhandling.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qforeach.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qttypetraits.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qfunctionpointer.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qglobalstatic.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qmalloc.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qminmax.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qnumeric.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qoverload.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qswap.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtenvironmentvariables.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtresource.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qttranslation.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qversiontagging.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qstringview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qbytearray.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qrefcount.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qnamespace.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtmetamacros.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qarraydata.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qpair.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qarraydatapointer.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qarraydataops.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qcontainertools_impl.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qxptype_traits.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/q20type_traits.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/q20functional.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/q20memory.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qbytearrayview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qstringfwd.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qstringliteral.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qstringalgorithms.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qlatin1stringview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qanystringview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qutf8stringview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qstringtokenizer.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qstringbuilder.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qstringconverter.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qstringconverter_base.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\notificationsettings.o ..\..\notificationsettings.cpp
 
 debug/notificationtype.o: ../../notificationtype.cpp ../../notificationtype.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QString \
@@ -5098,19 +5262,51 @@ debug/controller.o: ../../controller.cpp ../../controller.h \
 		../../uilistclient.h \
 		../../uilistaccount.h \
 		ui_uilisttransaction.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QComboBox \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qcombobox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHBoxLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHeaderView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qheaderview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QSpacerItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QTableView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtableview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QWidget \
 		../../uilisttransaction.h \
 		../../uiclient.h \
 		../../uiprofile.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QFormLayout \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qformlayout.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLayout \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
-		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
 		../../uilistnotif.h \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/QStandardItemModel \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/qstandarditemmodel.h \
@@ -5120,10 +5316,12 @@ debug/controller.o: ../../controller.cpp ../../controller.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qtimer.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qbasictimer.h \
 		../../uimessages.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QListWidgetItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlistwidget.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlistview.h \
 		../../messagemodel.h \
 		../../message.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QRegularExpression \
-		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QDebug \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/QSqlError \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/qsqlerror.h \
@@ -5406,6 +5604,7 @@ debug/service.o: ../../service.cpp ../../service.h \
 		../../notificationtype.h \
 		../../dashboardmodel.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QObject \
+		../../notificationsettings.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMessageBox \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmessagebox.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -5708,7 +5907,44 @@ debug/uiclient.o: ../../uiclient.cpp ../../uiclient.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qframe.h \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextdocument.h \
-		ui_uiclient.h
+		ui_uiclient.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHBoxLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHeaderView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qheaderview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QSpacerItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QTableView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtableview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QVBoxLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\uiclient.o ..\..\uiclient.cpp
 
 debug/uidashboard.o: ../../uidashboard.cpp ../../uidashboard.h \
@@ -5916,6 +6152,50 @@ debug/uidashboard.o: ../../uidashboard.cpp ../../uidashboard.h \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/QSqlDatabase \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QtDebug \
 		ui_uidashboard.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QFrame \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QGridLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHBoxLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHeaderView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qheaderview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QSpacerItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QTabWidget \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QTableView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtableview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QVBoxLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QWidget \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\uidashboard.o ..\..\uidashboard.cpp
 
@@ -6136,7 +6416,45 @@ debug/uilistnotif.o: ../../uilistnotif.cpp ../../uilistnotif.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QString \
 		../../notificationtype.h \
 		../../transaction.h \
-		ui_uilistnotif.h
+		ui_uilistnotif.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHBoxLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QListView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlistview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QSpacerItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QVBoxLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\uilistnotif.o ..\..\uilistnotif.cpp
 
 debug/uilistuser.o: ../../uilistuser.cpp ../../uilistuser.h \
@@ -6354,6 +6672,45 @@ debug/uilistuser.o: ../../uilistuser.cpp ../../uilistuser.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qitemselectionmodel.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QModelIndex \
 		ui_uilistuser.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHBoxLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHeaderView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qheaderview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QSpacerItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QTableView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtableview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QWidget \
 		../../uidashboard.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QTimer \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qtimer.h \
@@ -6575,7 +6932,46 @@ debug/uilistclient.o: ../../uilistclient.cpp ../../uilistclient.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QItemSelectionModel \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qitemselectionmodel.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QModelIndex \
-		ui_uilistclient.h
+		ui_uilistclient.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHBoxLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHeaderView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qheaderview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QSpacerItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QTableView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtableview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\uilistclient.o ..\..\uilistclient.cpp
 
 debug/uilistaccount.o: ../../uilistaccount.cpp ../../uilistaccount.h \
@@ -6792,7 +7188,46 @@ debug/uilistaccount.o: ../../uilistaccount.cpp ../../uilistaccount.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qitemselectionmodel.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QModelIndex \
 		../../account.h \
-		ui_uilistaccount.h
+		ui_uilistaccount.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHBoxLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHeaderView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qheaderview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QSpacerItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QTableView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtableview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\uilistaccount.o ..\..\uilistaccount.cpp
 
 debug/uiloginin.o: ../../uiloginin.cpp ../../uiloginin.h \
@@ -6986,7 +7421,39 @@ debug/uiloginin.o: ../../uiloginin.cpp ../../uiloginin.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qlocale.h \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/qguiapplication_platform.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabwidget.h \
-		ui_uiloginin.h
+		ui_uiloginin.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QFormLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qformlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QGridLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QSpacerItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\uiloginin.o ..\..\uiloginin.cpp
 
 debug/uimessages.o: ../../uimessages.cpp ../../uimessages.h \
@@ -7178,23 +7645,67 @@ debug/uimessages.o: ../../uimessages.cpp ../../uimessages.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qlocale.h \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/qguiapplication_platform.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabwidget.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QListWidgetItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlistwidget.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlistview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qrubberband.h \
 		../../messagemodel.h \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/QSqlQueryModel \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/qsqlquerymodel.h \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/qtsqlglobal.h \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/qtsql-config.h \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/qtsqlexports.h \
-		C:/Qt/6.7.3/mingw_64/include/QtCore/qabstractitemmodel.h \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/qsqldatabase.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QItemSelectionModel \
-		C:/Qt/6.7.3/mingw_64/include/QtCore/qitemselectionmodel.h \
 		../../dbmanager.h \
 		C:/Qt/6.7.3/mingw_64/include/QtSql/QSqlDatabase \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QtDebug \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QMutex \
 		../../message.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QString \
-		ui_uimessages.h
+		ui_uimessages.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHBoxLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QListWidget \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QTextEdit \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtextedit.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QVBoxLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\uimessages.o ..\..\uimessages.cpp
 
 debug/uiprofile.o: ../../uiprofile.cpp ../../uiprofile.h \
@@ -7386,7 +7897,40 @@ debug/uiprofile.o: ../../uiprofile.cpp ../../uiprofile.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qlocale.h \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/qguiapplication_platform.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabwidget.h \
-		ui_uiprofile.h
+		ui_uiprofile.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/QAction \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QFormLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qformlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHBoxLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QSpacerItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\uiprofile.o ..\..\uiprofile.cpp
 
 debug/uiuser.o: ../../uiuser.cpp ../../uiuser.h \
@@ -7580,7 +8124,57 @@ debug/uiuser.o: ../../uiuser.cpp ../../uiuser.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabwidget.h \
 		../../uiabstractwindow.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QString \
-		ui_uiuser.h
+		ui_uiuser.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QComboBox \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qcombobox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QDateEdit \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qdatetimeedit.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qtimezone.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qdatetime.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qcalendar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QFormLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qformlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QGridLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QSpacerItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\uiuser.o ..\..\uiuser.cpp
 
 debug/user.o: ../../user.cpp ../../user.h \
@@ -8216,13 +8810,52 @@ debug/uilisttransaction.o: ../../uilisttransaction.cpp ../../uilisttransaction.h
 		../../notificationtype.h \
 		../../dashboardmodel.h \
 		ui_uilisttransaction.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QComboBox \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qcombobox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHBoxLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QHeaderView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qheaderview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QSpacerItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QTableView \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtableview.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QWidget \
 		../../controller.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QInputDialog \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qinputdialog.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlineedit.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qframe.h \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextcursor.h \
-		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextdocument.h \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextformat.h \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/qpen.h \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextoption.h \
@@ -8243,13 +8876,6 @@ debug/uilisttransaction.o: ../../uilisttransaction.cpp ../../uilisttransaction.h
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QFormLayout \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qformlayout.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLayout \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
-		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
 		../../uilistnotif.h \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/QStandardItemModel \
 		C:/Qt/6.7.3/mingw_64/include/QtGui/qstandarditemmodel.h \
@@ -8259,13 +8885,13 @@ debug/uilisttransaction.o: ../../uilisttransaction.cpp ../../uilisttransaction.h
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qtimer.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/qbasictimer.h \
 		../../uimessages.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QListWidgetItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlistwidget.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlistview.h \
 		../../messagemodel.h \
 		../../message.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QDateEdit \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qdatetimeedit.h \
-		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
-		C:/Qt/6.7.3/mingw_64/include/QtGui/qvalidator.h \
-		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMessageBox \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmessagebox.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
@@ -8464,7 +9090,52 @@ debug/uiaccount.o: ../../uiaccount.cpp ../../uiaccount.h \
 		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabwidget.h \
 		../../uiabstractwindow.h \
 		C:/Qt/6.7.3/mingw_64/include/QtCore/QString \
-		ui_uiaccount.h
+		ui_uiaccount.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QComboBox \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qcombobox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.7.3/mingw_64/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QFormLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qformlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qgridlayout.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QGridLayout \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLabel \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpicture.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QLineEdit \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qlineedit.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextcursor.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextformat.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.7.3/mingw_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QMenuBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenubar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qmenu.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QPushButton \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qpushbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QSpacerItem \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QStatusBar \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/qstatusbar.h \
+		C:/Qt/6.7.3/mingw_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\uiaccount.o ..\..\uiaccount.cpp
 
 debug/moc_dashboardmodel.o: debug/moc_dashboardmodel.cpp 

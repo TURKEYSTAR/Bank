@@ -13,7 +13,7 @@ TransactionModel::TransactionModel()
     dbManager = DBManager::getInstance();
 }
 
-void TransactionModel::create(Transaction transaction)
+int TransactionModel::create(Transaction transaction)
 {
     dbManager->open();
     QSqlQuery query(dbManager->database());
@@ -32,17 +32,21 @@ void TransactionModel::create(Transaction transaction)
     query.bindValue(":date", transaction.getDate());
     query.bindValue(":statut", transaction.getStatut());
 
-    query.exec();
+    int insertedId = -1;
 
-    int transactionId = query.lastInsertId().toInt();
-
-    Service::createNotificationForTransaction(transaction, transactionId);
+    if (query.exec()) {
+        insertedId = query.lastInsertId().toInt();
+        qDebug("Transaction added successfully!");
+    } else {
+        qDebug() << "Erreur lors de l'ajout de la transaction:" << query.lastError();
+    }
 
     dbManager->close();
+    readAll();
 
-    qDebug("Transaction added successfully !");
-    readAll(); // recupère les nouvelles données de la base ...
+    return insertedId;
 }
+
 
 QList<Transaction> TransactionModel::list()
 {
@@ -203,6 +207,41 @@ int TransactionModel::countMonthlyTransactions(int clientId)
 
     return count;
 }
+
+int TransactionModel::countTransactionsByAccount(int accountId)
+{
+    if (!dbManager->open()) {
+        qDebug() << "Failed to open DB";
+        return -1;
+    }
+
+    QSqlQuery query(dbManager->database());
+
+    query.prepare(R"(
+        SELECT COUNT(*)
+        FROM t_transactions
+        WHERE idCompteTire = :accountId OR idCompteBeneficiaire = :accountId
+    )");
+
+    query.bindValue(":accountId", accountId);
+
+    if (!query.exec()) {
+        qDebug() << "Query failed:" << query.lastError().text();
+        dbManager->close();
+        return -1;
+    }
+
+    int count = 0;
+    if (query.next()) {
+        count = query.value(0).toInt();
+    }
+
+    dbManager->close();
+    return count;
+}
+
+
+
 
 
 void TransactionModel::refresh()

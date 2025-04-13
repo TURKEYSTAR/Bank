@@ -65,9 +65,8 @@ public:
     QVBoxLayout *verticalLayout_6;
     QTableView *tableViewAccounts;
     QGridLayout *gridLayout;
-    QPushButton *pushButtonActiver;
-    QPushButton *pushButtonLimiter;
     QSpacerItem *horizontalSpacer_2;
+    QPushButton *pushButtonFermer_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -234,19 +233,14 @@ public:
 
         gridLayout = new QGridLayout();
         gridLayout->setObjectName("gridLayout");
-        pushButtonActiver = new QPushButton(tabDetails);
-        pushButtonActiver->setObjectName("pushButtonActiver");
-
-        gridLayout->addWidget(pushButtonActiver, 0, 1, 1, 1);
-
-        pushButtonLimiter = new QPushButton(tabDetails);
-        pushButtonLimiter->setObjectName("pushButtonLimiter");
-
-        gridLayout->addWidget(pushButtonLimiter, 0, 2, 1, 1);
-
         horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         gridLayout->addItem(horizontalSpacer_2, 0, 0, 1, 1);
+
+        pushButtonFermer_2 = new QPushButton(tabDetails);
+        pushButtonFermer_2->setObjectName("pushButtonFermer_2");
+
+        gridLayout->addWidget(pushButtonFermer_2, 0, 1, 1, 1);
 
 
         verticalLayout_6->addLayout(gridLayout);
@@ -287,8 +281,7 @@ public:
         labelRecentTransactions->setText(QCoreApplication::translate("UIDashboard", "Transactions R\303\251centes", nullptr));
         pushButtonFermer->setText(QCoreApplication::translate("UIDashboard", "Fermer", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabOverview), QCoreApplication::translate("UIDashboard", "Aper\303\247u", nullptr));
-        pushButtonActiver->setText(QCoreApplication::translate("UIDashboard", "Activer", nullptr));
-        pushButtonLimiter->setText(QCoreApplication::translate("UIDashboard", "Limiter", nullptr));
+        pushButtonFermer_2->setText(QCoreApplication::translate("UIDashboard", "Fermer", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabDetails), QCoreApplication::translate("UIDashboard", "Informations comptes", nullptr));
     } // retranslateUi
 

@@ -67,7 +67,7 @@ void UIListNotif::addNotificationToView(Notification notif)
 
     if (!notif.getIsRead()) {
         QFont boldFont;
-        boldFont.setBold(true);
+        boldFont.setBold(false);
         item->setFont(boldFont);
     }
 
@@ -102,7 +102,7 @@ void UIListNotif::updateNotifications(int userId)
 
         if (!notif.getIsRead()) {
             QFont font;
-            font.setBold(true);
+            font.setBold(false);
             item->setData(font, Qt::FontRole);
         }
 

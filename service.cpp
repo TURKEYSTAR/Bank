@@ -203,6 +203,12 @@ void Service::effectuerUnVersement(int idClient, double montant)
     QSqlField fieldId = selectedRecord.field(0);
     int accountId = fieldId.value().toInt();
 
+    int transactionCount = transactionModel->countTransactionsByAccount(accountId);
+    if (transactionCount >= 25) {
+        QMessageBox::warning(nullptr, "Transaction refusée", "Ce compte a déjà effectué plus de 25 transactions.");
+        return;
+    }
+
     Account account = accountModel->read(accountId);
 
     if (account.getStatut() == "GELER") {
@@ -232,6 +238,8 @@ void Service::effectuerUnVersement(int idClient, double montant)
     } else {
         qDebug("Transaction added without notification (statut = DESACTIVER).");
     }
+
+    return;
 }
 
 void Service::effectuerUnVirement(int idClient, QString numeroCompteBeneficiaire, double montant)
@@ -241,6 +249,12 @@ void Service::effectuerUnVirement(int idClient, QString numeroCompteBeneficiaire
     QSqlRecord selectedRecord = accountModel->record(selectedLine);
     QSqlField fieldId = selectedRecord.field(0);
     int accountId = fieldId.value().toInt();
+
+    int transactionCount = transactionModel->countTransactionsByAccount(accountId);
+    if (transactionCount >= 25) {
+        QMessageBox::warning(nullptr, "Transaction refusée", "Ce compte a déjà effectué plus de 25 transactions.");
+        return;
+    }
 
     Account senderAccount = accountModel->read(accountId);
     Account recipientAccount = accountModel->readByAccountNumber(numeroCompteBeneficiaire);

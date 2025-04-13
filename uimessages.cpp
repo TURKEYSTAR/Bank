@@ -1,5 +1,9 @@
 #include "uimessages.h"
 #include "ui_uimessages.h"
+#include "notificationtype.h"
+#include "notification.h"
+#include "notificationmodel.h"
+#include <QDate>
 #include "QMessageBox"
 
 Uimessages::Uimessages(QWidget *parent)
@@ -79,17 +83,33 @@ void Uimessages::loadMessages(int recipientId)
     }
 }
 
-
 void Uimessages::onSendClicked()
 {
     if (selectedRecipientId == -1 || ui->messageInput->text().isEmpty()) {
         return;
     }
 
+    NotificationType notifType = NotificationType::PRIVATE_MESSAGE;
+    QString additionalInfo = " ";
+    QString message1 = NotificationHelper::getMessage(notifType, additionalInfo);
+    QString title1 = NotificationHelper::getTitle(notifType);
+    QDate today = QDate::currentDate();
     QString content = ui->messageInput->text();
 
     Message message(currentUserId, selectedRecipientId, content);
     messageModel->sendMessage(message);
+
+    Notification notification(
+        selectedRecipientId,                     // ID destinataire
+        title1,                      // Titre
+        message1,                     // Contenu (limité à 100 caractères)
+        today.toString("yyyy-MM-ddT"),          // Horodatage
+        false,                                 // Non lu (si applicable)
+        notifType      // Type de notification
+        );
+
+    NotificationModel notificationModel;
+    notificationModel.create(notification);
 
     ui->messageInput->clear();
     loadMessages(selectedRecipientId);

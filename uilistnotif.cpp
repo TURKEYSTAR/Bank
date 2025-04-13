@@ -132,3 +132,24 @@ void UIListNotif::onNotificationClicked(const QModelIndex &index)
     font.setBold(false);
     item->setData(font, Qt::FontRole);
 }
+
+void UIListNotif::showNotifications()
+{
+    if (!notificationModel) return;
+
+    listViewModel->clear();
+    notificationModel->readAll();
+
+    for (int row = 0; row < notificationModel->rowCount(); ++row) {
+        QString title = notificationModel->data(notificationModel->index(row, 1)).toString();
+        QString message = notificationModel->data(notificationModel->index(row, 2)).toString();
+        QString date = notificationModel->data(notificationModel->index(row, 3)).toString();
+
+        QStandardItem* item = new QStandardItem(
+            QString("[%1] %2\n  %3").arg(date.left(10)).arg(title).arg(message + "..."));
+        item->setData(notificationModel->data(notificationModel->index(row, 0)), Qt::UserRole);
+        listViewModel->appendRow(item);
+    }
+
+    ui->labelTitle->setText("Toutes les notifications");
+}

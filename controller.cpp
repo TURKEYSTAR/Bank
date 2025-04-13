@@ -591,6 +591,7 @@ void Controller::onNotif_UIClient()
     uiListNotif.setNotificationModel(notificationModel);
     uiListNotif.refreshNotifications(connectedUser.getId());
 
+    uiListNotif.showNotifications();
     uiListNotif.show();
 }
 
@@ -718,11 +719,9 @@ void Controller::onOuvrir_UIListAccount()
         return;
     }
 
-    // Get account information
     int selectedLine = index.row();
     QSqlRecord record = accountModel->record(selectedLine);
 
-    // Check account status
     QString statut = record.value("statut").toString().trimmed().toUpper();
     if (statut == "GELER") {
         uiClient.warning("Compte gelé",
@@ -730,10 +729,8 @@ void Controller::onOuvrir_UIListAccount()
         return;
     }
 
-    // Get the account number
     QString accountNumber = record.value("number").toString();
 
-    // Get client name
     QModelIndex userIndex = userModel->getSelectionModel()->currentIndex();
     if (!userIndex.isValid()) {
         uiClient.warning("Erreur", "Impossible de récupérer les informations du client.");
@@ -742,14 +739,12 @@ void Controller::onOuvrir_UIListAccount()
 
     QString nomClient = userModel->record(userIndex.row()).value("nom").toString();
 
-    // Configure transaction list
     uiListAccount.hide();
     uiListTransaction.setTableViewModel(transactionModel);
     uiListTransaction.setAccountNumber(accountNumber);
     uiListTransaction.updateTitle(nomClient,
                                   "Les transactions effectuées sur le compte : " + accountNumber);
 
-    // Load transactions for this specific account
     service.listerLesTransactionsDuCompte();
 
     uiListTransaction.show();

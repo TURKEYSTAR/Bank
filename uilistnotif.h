@@ -20,7 +20,7 @@ public:
 
     void setNotificationModel(NotificationModel* model);
     void refreshNotifications(int userId);
-
+    void showNotifications();
     void updateWindowTitle(const QString& userInfo);
     void updateNotifications(int userId);
     void showUnreadCount(int count);

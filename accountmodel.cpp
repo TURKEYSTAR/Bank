@@ -180,6 +180,55 @@ Account AccountModel::readByAccountNumber(const QString &accountNumber)
     return account;
 }
 
+QString AccountModel::getClientNameForAccount(const QString& accountNumber) const
+{
+    if (!QSqlDatabase::database().isOpen()) {
+        qWarning() << "Database not open";
+        return QString();
+    }
+
+    QSqlQuery query;
+    query.prepare(
+        "SELECT c.nom "
+        "FROM t_accounts a "
+        "JOIN t_users c ON a.clientId = c.id "
+        "WHERE a.number = :number"
+        );
+    query.bindValue(":number", accountNumber);
+
+    if (!query.exec()) {
+        qWarning() << "Query failed:" << query.lastError().text();
+        return QString();
+    }
+
+    if (query.next()) {
+        return QString("%1")
+        .arg(query.value("nom").toString());
+    }
+
+    return QString("Compte inconnu");
+}
+
+int AccountModel::getUserIdForAccount(QString number) const
+{
+    if (!QSqlDatabase::database().isOpen()) {
+        qDebug() << "Erreur: Base de données non ouverte";
+        return -1;
+    }
+
+    QSqlQuery query;
+    query.prepare("SELECT clientId FROM t_accounts WHERE number = :number");
+    query.bindValue(":number", number);
+
+    if (!query.exec()) {
+        qDebug() << "Erreur lors de la récupération de l'ID client:"
+            ;
+        return -1;
+    }
+
+    return query.next() ? query.value("clientId").toInt() : -1;
+}
+
 void AccountModel::setHeaderTitle()
 {
     this->setHeaderData(0, Qt::Horizontal, tr("Account Id"));

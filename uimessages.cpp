@@ -1,5 +1,6 @@
 #include "uimessages.h"
 #include "ui_uimessages.h"
+#include "QMessageBox"
 
 Uimessages::Uimessages(QWidget *parent)
     : QMainWindow(parent)
@@ -17,8 +18,8 @@ Uimessages::Uimessages(QObject *controller)
     qDebug("Contruction/Initialisation de la fenêtre UIListClient ...");
     ui->setupUi(this);
 
-    //connect(ui->pushButtonSend, SIGNAL(clicked()), controller, SLOT(onEnvoyerClicked()));
     connect(ui->pushButtonFermer, SIGNAL(clicked()), controller, SLOT(onFermerClicked_UIMessage()));
+    connect(ui->pushButtonSupprimer, SIGNAL(clicked()), controller, SLOT(onSupprimerClicked()));
     connect(ui->userList, &QListWidget::itemClicked, this, &Uimessages::onUserSelected);
     connect(ui->pushButtonSend, SIGNAL(clicked()), this, SLOT(onSendClicked()));
 }
@@ -71,9 +72,13 @@ void Uimessages::loadMessages(int recipientId)
         .arg(msg.getDate())
             .arg(msg.getExpediteurId() == currentUserId ? "Moi" : "Lui")
             .arg(msg.getContenu());
-        ui->messageDisplay->append(display);
+
+        QListWidgetItem* item = new QListWidgetItem(display);
+        item->setData(Qt::UserRole, msg.getId());
+        ui->messageDisplay->addItem(item);
     }
 }
+
 
 void Uimessages::onSendClicked()
 {
@@ -89,5 +94,26 @@ void Uimessages::onSendClicked()
     ui->messageInput->clear();
     loadMessages(selectedRecipientId);
 }
+
+
+void Uimessages::deleteSelectedMessage()
+{
+    QListWidgetItem* selectedItem = ui->messageDisplay->currentItem();
+    if (!selectedItem) return;
+
+    int messageId = selectedItem->data(Qt::UserRole).toInt();
+    qDebug() << "Trying to delete message with ID:" << messageId;
+
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Suppression", "Voulez-vous vraiment supprimer ce message ?",
+                                  QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        delete selectedItem;
+        messageModel->deleteMessage(messageId);
+        loadMessages(selectedRecipientId);
+    }
+}
+
+
 
 

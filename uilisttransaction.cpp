@@ -122,12 +122,18 @@ Transaction* UIListTransaction::getSelectedTransaction() const
     if (!model) {
         return nullptr;
     }
-
     QSqlRecord record = model->record(index.row());
-
+    int id = record.value("id").toInt();
+    int idClient = model->getClientIdForTransaction(id);
+    qDebug() << "Données brutes de la transaction:";
+    qDebug() << "ID:" << record.value("id").toInt();
+    qDebug() << "ID Client:" << idClient;
+    qDebug() << "Type:" << record.value("type").toString();
+    qDebug() << "Compte Tiré:" << record.value("numeroCompteTire").toString();
+    qDebug() << "Statut:" << record.value("statut").toString();
     return new Transaction(
-        record.value("id").toInt(),
-        record.value("idClient").toInt(),
+        id,
+        idClient,
         record.value("type").toString(),
         record.value("idCompteTire").toInt(),
         record.value("idCompteBeneficiaire").toInt(),
@@ -229,10 +235,40 @@ bool UIListTransaction::validateSelectedTransaction()
         if (!database.commit()) {
             throw std::runtime_error("Échec de la validation de la transaction");
         }
+        transaction->setStatut("Completed"); // Assurez-vous que cette méthode existe dans la classe Transaction
 
+        // Création de la notification avec le statut à jour
+        TransactionModel* model = getTransactionModel();
+        if (!model) {
+            throw std::runtime_error("Modèle de transactions non disponible");
+        }
+        model->refresh(); // Rafraîchir le modèle si nécessaire (pour l'UI)
+
+        const int idTransaction = transaction->getId();
+        const int idUser = model->getClientIdForTransaction(idTransaction);
+
+
+        Service::createNotificationForTransaction(*transaction, idTransaction, idUser);
+
+        // Si c'est un virement, notifier le bénéficiaire
+        if (transaction->getType() == "Virement") {
+            // 1. Récupérer l'ID du client bénéficiaire via son numéro de compte
+            AccountModel accountModel; // Supposons que AccountModel est disponible
+            const int idBeneficiaire = accountModel.getUserIdForAccount(transaction->getNumeroCompteBeneficiaire());
+
+            if (idBeneficiaire == -1) {
+                qDebug() << "Erreur: Impossible de trouver l'ID du bénéficiaire pour le compte"
+                         << transaction->getNumeroCompteBeneficiaire();
+            } else {
+                // 2. Créer une notification pour le bénéficiaire
+                Service service;
+                service.createRecipientNotification(*transaction, transaction->getId(),idBeneficiaire);
+
+                qDebug() << "Notification envoyée au bénéficiaire (ID:" << idBeneficiaire << ")";
+            }
+        }
         this->update();
         return true;
-
     } catch (const std::exception& e) {
         database.rollback();
         QMessageBox::critical(this, "Erreur", e.what());
@@ -290,6 +326,18 @@ bool UIListTransaction::rejectSelectedTransaction()
             throw std::runtime_error("Échec du commit");
         }
 
+        transaction->setStatut("Rejected");
+
+        TransactionModel* model1 = getTransactionModel();
+        if (!model1) {
+            throw std::runtime_error("Modèle de transactions non disponible");
+        }
+        model1->refresh();
+
+        const int idTransaction = transaction->getId();
+        const int idUser = model->getClientIdForTransaction(idTransaction);
+        Service::createNotificationForTransaction(*transaction, idTransaction, idUser);
+
         this->update();
         return true;
 
@@ -304,6 +352,7 @@ bool UIListTransaction::rejectSelectedTransaction()
         }
     }
 }
+
 UIListTransaction::~UIListTransaction()
 {
     delete ui;

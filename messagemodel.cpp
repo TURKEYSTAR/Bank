@@ -131,18 +131,18 @@ QList<QPair<int, QString>> MessageModel::getAllUsers()
         QString name = query.value(1).toString();
         users.append(qMakePair(id, name));
     }
+    query.finish();
     dbManager->close();
     return users;
 }
 
-// Get all messages between userId1 and userId2
 QList<Message> MessageModel::getConversation(int userId1, int userId2)
 {
     QList<Message> messages;
     dbManager->open();
     QSqlQuery query;
     query.prepare(R"(
-    SELECT expediteur_id, destinataire_id, contenu, date_envoi FROM t_messages
+    SELECT id, expediteur_id, destinataire_id, contenu, date_envoi FROM t_messages
     WHERE
         (expediteur_id = :user1a AND destinataire_id = :user2a)
         OR
@@ -161,16 +161,18 @@ QList<Message> MessageModel::getConversation(int userId1, int userId2)
     }
 
     while (query.next()) {
-        int senderId = query.value(0).toInt();
-        int recipientId = query.value(1).toInt();
-        QString content = query.value(2).toString();
-        QString date = query.value(3).toString();
+        int id = query.value(0).toInt();
+        int senderId = query.value(1).toInt();
+        int recipientId = query.value(2).toInt();
+        QString content = query.value(3).toString();
+        QString date = query.value(4).toString();
 
-        Message msg;
-        msg = Message(senderId, recipientId, content);
+        Message msg(senderId, recipientId, content);
+        msg.setId(id);
         msg.setDate(date);
         messages.append(msg);
     }
+    query.finish();
     dbManager->close();
     return messages;
 }
@@ -192,5 +194,23 @@ void MessageModel::sendMessage(const Message& message)
     if (!query.exec()) {
         qWarning() << "Error sending message:" << query.lastError().text();
     }
+    dbManager->close();
+}
+
+void MessageModel::deleteMessage(int messageId)
+{
+    dbManager->open();
+    QSqlQuery query(dbManager->database());
+
+    query.prepare("DELETE FROM t_messages WHERE id = :id");
+    query.bindValue(":id", messageId);
+
+    if (!query.exec()) {
+        qWarning() << "Failed to delete message:" << query.lastError().text();
+    } else {
+        qDebug() << "Message deleted successfully!";
+    }
+
+    query.finish();
     dbManager->close();
 }

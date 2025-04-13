@@ -16,14 +16,15 @@ class Uimessages : public QMainWindow
 public:
     explicit Uimessages(QWidget *parent = nullptr);
     Uimessages(QObject *controller);
+    QList<Message> currentMessages;
     ~Uimessages();
 
-    void setCurrentUserId(int userId); // To set the connected user ID
+    void setCurrentUserId(int userId);
+    void deleteSelectedMessage();
 
 private slots:
     void onUserSelected(QListWidgetItem* item);
     void onSendClicked();
-
 private:
     Ui::Uimessages *ui;
     MessageModel *messageModel;

@@ -6,6 +6,7 @@
 #include "accountmodel.h"
 #include "transactionmodel.h"
 #include "notificationmodel.h"
+#include "notificationtype.h"
 
 #include "dashboardmodel.h"
 
@@ -40,8 +41,10 @@ public:
     void executeTransaction (QMap<QString, QString> input, bool &status, QString &message);
     bool modifierUneTransaction(const QString& id, const QMap<QString, QVariant>& data);
 
-    static void createNotificationForTransaction(Transaction transaction, int transactionId);
+    static void createNotificationForTransaction(Transaction transaction, int transactionId, int userId);
+    void createRecipientNotification(Transaction transaction, int transactionId, int recipientId);
 
+    Service();
     Service(UserModel* userModel);
     Service(UserModel* userModel, AccountModel* accountModel);
     Service(UserModel* userModel, AccountModel* accountModel, TransactionModel* transactionModel);

@@ -754,6 +754,14 @@ void Controller::onOuvrir_UIListAccount()
 
     uiListTransaction.show();
     uiListTransaction.top();
+
+    QString role = connectedUser.getRole();
+
+    if (role == "CLIENT" || role == "ADMINISTRATEUR") {
+        uiListTransaction.disableActionButtons();
+    } else if (role == "GESTIONNAIRE"){
+        uiListTransaction.enableActionButtons();
+    }
 }
 
 void Controller::onGeler_UIListAccount()
@@ -1064,6 +1072,11 @@ void Controller::onFermerClicked_UIMessage()
     default:
         break;
     }
+}
+
+void Controller::onSupprimerClicked()
+{
+    uiMessages.deleteSelectedMessage();
 }
 
 Controller::~Controller()

@@ -34,6 +34,7 @@ public:
 
     int countMonthlyTransactions(int clientId);
     int countTransactionsByAccount(int accountId);
+    int getClientIdForTransaction(int transactionId) const;
 
     void readAll();
     void readAll(int accountId);

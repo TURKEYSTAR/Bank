@@ -6,6 +6,8 @@
 #include <QMessageBox>
 #include <QSqlError>
 
+Service::Service() {}
+
 Service::Service(UserModel* _userModel) :
     userModel(_userModel){}
 
@@ -177,11 +179,14 @@ bool Service::effectuerUnRetrait(int idClient, double montant)
     Transaction transaction("Retrait", idClient, accountId, -1, account.getNumber(), "NULL", montant,
                             today.toString("yyyy-MM-ddT") + now.toString("HH:mm:ss.zzz"), "Completed");
 
-    int transactionId = transactionModel->create(transaction);
+    transactionModel->create(transaction);
+
+    int transactionId = transaction.getId();
+    int clientId = transaction.getIdClient();
     NotificationSettings notification;
 
     if (notification.getStatut() == "ACTIVER") {
-        Service::createNotificationForTransaction(transaction, transactionId);
+        Service::createNotificationForTransaction(transaction, transactionId, clientId);
         qDebug("Transaction added and notification created!");
     } else {
         qDebug("Transaction added without notification (statut = DESACTIVER).");
@@ -215,11 +220,14 @@ void Service::effectuerUnVersement(int idClient, double montant)
     Transaction transaction("Versement", idClient, -1, accountId, "NULL", account.getNumber(), montant,
                             today.toString("yyyy-MM-ddT") + now.toString("HH:mm:ss.zzz"), "Completed");
 
-    int transactionId = transactionModel->create(transaction);
+    transactionModel->create(transaction);
+
+    int transactionId = transaction.getId();
+    int clientId = transaction.getIdClient();
     NotificationSettings notification;
 
     if (notification.getStatut() == "ACTIVER") {
-        Service::createNotificationForTransaction(transaction, transactionId);
+        Service::createNotificationForTransaction(transaction, transactionId, clientId);
         qDebug("Transaction added and notification created!");
     } else {
         qDebug("Transaction added without notification (statut = DESACTIVER).");
@@ -248,11 +256,11 @@ void Service::effectuerUnVirement(int idClient, QString numeroCompteBeneficiaire
                             senderAccount.getNumber(), recipientAccount.getNumber(), montant,
                             today.toString("yyyy-MM-ddT") + now.toString("HH:mm:ss.zzz"), "In progress");
 
-    int transactionId = transactionModel->create(transaction);
+    transactionModel->create(transaction);
+
     NotificationSettings notification;
 
     if (notification.getStatut() == "ACTIVER") {
-        Service::createNotificationForTransaction(transaction, transactionId);
         qDebug("Transaction added and notification created!");
     } else {
         qDebug("Transaction added without notification (statut = DESACTIVER).");
@@ -359,9 +367,6 @@ bool Service::modifierUneTransaction(const QString& id, const QMap<QString, QVar
         qDebug() << "Transaction update error:" << query.lastError();
         return false;
     }
-
-    // Optional: Emit signal if using signals/slots for notification
-    // emit dataChanged();
     return true;
 }
 
@@ -411,34 +416,56 @@ bool Service::getClientInfo(int clientId, QMap<QString, QString>& clientData)
     return false;
 }
 
-void Service::createNotificationForTransaction(Transaction transaction, int transactionId) {
+
+void Service::createNotificationForTransaction(Transaction transaction, int transactionId, int userId) {
     NotificationType notifType;
     QString additionalInfo;
+    qDebug() << "[DEBUG] Création notification - ID Client:" << transaction.getIdClient()
+             << "Transaction ID:" << transactionId;
 
+    if (transaction.getIdClient() <= 0) {
+        qCritical() << "ERREUR: ID Client invalide dans la transaction!";
+        return;
+    }
+    if (transaction.getStatut() == "In progress") {
+        qDebug() << "Aucune notification créée pour transaction en attente (ID:" << transactionId << ")";
+        return;
+    }
     // Détermine le type de notification et le message
-    if (transaction.getType() == "VERSEMENT") {
-        notifType = (transaction.getStatut() == "COMPLETED")
+    if (transaction.getType() == "Versement") {
+        notifType = (transaction.getStatut() == "Completed")
         ? NotificationType::VERSEMENT_VALIDE
-        : NotificationType::VIREMENT_REJETE;
+        : NotificationType::VERSEMENT_REJETE;
         additionalInfo = QString("Montant: %1 € → Compte: %2")
                              .arg(transaction.getMontant())
                              .arg(transaction.getNumeroCompteBeneficiaire());
     }
-    else  {
-        notifType = (transaction.getStatut() == "COMPLETED")
+    else if (transaction.getType() == "Retrait") {
+        notifType = (transaction.getStatut() == "Completed")
+        ? NotificationType::RETRAIT_VALIDE
+        : NotificationType::RETRAIT_REJETE;
+        additionalInfo = QString("Montant: %1 € - Compte Tiré: %2")
+                             .arg(transaction.getMontant())
+                             .arg(transaction.getNumeroCompteTire());
+    }
+    else if (transaction.getType() == "Virement") {
+        notifType = (transaction.getStatut() == "Completed")
         ? NotificationType::VIREMENT_VALIDE
         : NotificationType::VIREMENT_REJETE;
-        additionalInfo = QString("Montant: %1 € → Compte: %2")
+        additionalInfo = QString("Montant: %1 € - Compte Tiré: %2 → Compte Beneficiaire: %3")
                              .arg(transaction.getMontant())
+                             .arg(transaction.getNumeroCompteTire())
                              .arg(transaction.getNumeroCompteBeneficiaire());
     }
-
+    else {
+        return; // Type de transaction non pris en charge
+    }
 
     QString message = NotificationHelper::getMessage(notifType, additionalInfo);
     QString title = NotificationHelper::getTitle(notifType);
 
     Notification notification(
-        transaction.getIdClient(),
+        userId,
         title,                  // Titre généré
         message,                // Message généré
         transaction.getDate(),
@@ -451,8 +478,34 @@ void Service::createNotificationForTransaction(Transaction transaction, int tran
     notification.setIdTransaction(transactionId);
 
     NotificationModel notificationModel;
-    notificationModel.create(notification);
 
+    notificationModel.create(notification);
+}
+
+void Service::createRecipientNotification(Transaction transaction, int transactionId, int recipientId) {
+    NotificationType notifType = NotificationType::VIREMENT_RECU;
+    AccountModel accountModel;
+    QString accountNumber = transaction.getNumeroCompteTire();
+    QString clientName = accountModel.getClientNameForAccount(accountNumber);
+    QString additionalInfo = QString("Vous avez reçu un virement de %1 € de %2  du compte %3 vers le compte %4 .")
+                                 .arg(transaction.getMontant())
+                                 .arg(clientName)
+                                 .arg(transaction.getNumeroCompteTire())
+                                 .arg(transaction.getNumeroCompteBeneficiaire());
+    QString title = NotificationHelper::getTitle(notifType);
+    QString message = NotificationHelper::getMessage(notifType, additionalInfo);
+    Notification notification(
+        recipientId,
+        title,
+        message,
+        transaction.getDate(),
+        false,
+        notifType
+        );
+    notification.setIdTransaction(transactionId);
+
+    NotificationModel model;
+    model.create(notification);
 }
 
 void Service::listerLesNotifications()

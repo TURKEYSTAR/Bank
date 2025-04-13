@@ -142,7 +142,7 @@ private slots:
      * Les slots de la fenêtre UIMessages
      */
     void onFermerClicked_UIMessage();
-    //void onEnvoyerClicked();
+    void onSupprimerClicked();
 };
 #endif // CONTROLLER_H
 

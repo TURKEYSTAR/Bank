@@ -3,6 +3,7 @@
 
 #include "dbmanager.h"
 #include <QtDebug>
+#include <QString>
 #include <QMetaType>
 #include <QSqlQuery>
 #include <QSqlField>
@@ -29,12 +30,13 @@ public:
 
     QList<Account> list();
 
-    // Rafraîchit la collection et la tableView ...
     void readAll(int clientId);
     void readAll();
 
     void readBy(int clientId);
     Account readByAccountNumber(const QString &accountNumber);
+    QString getClientNameForAccount(const QString& accountNumber) const;
+    int getUserIdForAccount(QString number) const;
     void setHeaderTitle();
 
     AccountModel();

@@ -240,9 +240,25 @@ int TransactionModel::countTransactionsByAccount(int accountId)
     return count;
 }
 
+int TransactionModel::getClientIdForTransaction(int transactionId) const
+{
+    if (!QSqlDatabase::database().isOpen()) {
+        qDebug() << "Erreur: Base de données non ouverte";
+        return -1;
+    }
 
+    QSqlQuery query;
+    query.prepare("SELECT idClient FROM t_transactions WHERE id = :transactionId");
+    query.bindValue(":transactionId", transactionId);
 
+    if (!query.exec()) {
+        qDebug() << "Erreur lors de la récupération de l'ID client:"
+            ;
+        return -1;
+    }
 
+    return query.next() ? query.value("idClient").toInt() : -1;
+}
 
 void TransactionModel::refresh()
 {
@@ -250,7 +266,6 @@ void TransactionModel::refresh()
     readAll();
     endResetModel();
 
-    // Restore selection if needed
     if (selectionModel->hasSelection()) {
         QModelIndex current = selectionModel->currentIndex();
         if (current.isValid()) {

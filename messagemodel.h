@@ -28,6 +28,8 @@ public:
     QList<QPair<int, QString>> getAllUsers();
     QList<Message> getConversation(int fromUserId, int toUserId);
     void sendMessage(const Message &msg);
+    void deleteMessage(int messageId);
+
 };
 
 #endif // MESSAGEMODEL_H

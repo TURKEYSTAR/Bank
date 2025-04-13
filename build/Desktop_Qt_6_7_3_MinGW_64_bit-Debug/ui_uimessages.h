@@ -17,8 +17,8 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -29,10 +29,14 @@ class Ui_Uimessages
 public:
     QWidget *centralwidget;
     QHBoxLayout *mainLayout;
+    QVBoxLayout *verticalLayout;
+    QSpacerItem *verticalSpacer;
     QPushButton *pushButtonFermer;
+    QPushButton *pushButtonSupprimer;
+    QSpacerItem *verticalSpacer_2;
     QListWidget *userList;
     QVBoxLayout *messageLayout;
-    QTextEdit *messageDisplay;
+    QListWidget *messageDisplay;
     QHBoxLayout *inputLayout;
     QLineEdit *messageInput;
     QPushButton *pushButtonSend;
@@ -48,10 +52,29 @@ public:
         centralwidget->setObjectName("centralwidget");
         mainLayout = new QHBoxLayout(centralwidget);
         mainLayout->setObjectName("mainLayout");
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName("verticalLayout");
+        verticalLayout->setContentsMargins(0, 1, -1, -1);
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer);
+
         pushButtonFermer = new QPushButton(centralwidget);
         pushButtonFermer->setObjectName("pushButtonFermer");
 
-        mainLayout->addWidget(pushButtonFermer);
+        verticalLayout->addWidget(pushButtonFermer);
+
+        pushButtonSupprimer = new QPushButton(centralwidget);
+        pushButtonSupprimer->setObjectName("pushButtonSupprimer");
+
+        verticalLayout->addWidget(pushButtonSupprimer);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_2);
+
+
+        mainLayout->addLayout(verticalLayout);
 
         userList = new QListWidget(centralwidget);
         userList->setObjectName("userList");
@@ -60,9 +83,8 @@ public:
 
         messageLayout = new QVBoxLayout();
         messageLayout->setObjectName("messageLayout");
-        messageDisplay = new QTextEdit(centralwidget);
+        messageDisplay = new QListWidget(centralwidget);
         messageDisplay->setObjectName("messageDisplay");
-        messageDisplay->setReadOnly(true);
 
         messageLayout->addWidget(messageDisplay);
 
@@ -102,6 +124,7 @@ public:
     {
         Uimessages->setWindowTitle(QCoreApplication::translate("Uimessages", "Direct messages", nullptr));
         pushButtonFermer->setText(QCoreApplication::translate("Uimessages", "Fermer", nullptr));
+        pushButtonSupprimer->setText(QCoreApplication::translate("Uimessages", "Supprimer", nullptr));
         pushButtonSend->setText(QCoreApplication::translate("Uimessages", "Envoyer", nullptr));
     } // retranslateUi
 
